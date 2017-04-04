@@ -16,12 +16,12 @@ source $VIM\customize\session_x\session_x.vim
 source $VIM\customize\chatwork.vim
 " chess game
 source $VIM\customize\chess.vim
-" statusline
-source $VIM\customize\statusline.vim
-" quicksilver
-source $VIM\customize\quicksilver.vim
 " secret :set path+=C:\dev\会社名\プロジェクト名\** etc.
 source $VIM\customize\secret.vim
+
+" SORROW: ラインの魔術師を呼べない
+runtime! $VIM\customize\theLineOfTheMagician\*.vim
+source $VIM\customize\theLineOfTheMagician\statusline.vim
 " pineapple
 runtime! $VIM\customize\pineapple\*.vim
 
@@ -55,7 +55,7 @@ set encoding=utf-8
 set fileencodings=utf-8,cp932,ucs-2,utf-16le,euc-jp,iso-2022-jp,ucs-2le
 set fileformats=unix,dos,mac
 
-" undo file(*.un~) ?����??ɍ??点?Ȃ?
+" undo file(*.un~) ???ɍ??点?Ȃ?
 set noundofile
 
 " back up file(*.*~) ??℅???点??
@@ -65,9 +65,9 @@ set backupdir=C:\bak~
 " path ???ݒ肵?Afind?R?}???h???֗ィ??ɂ???
 set path+=$VIM\customize\**
 
-" ???����??񂪏??????̏ꍇ?͑啶?????????̋??ʂ����Ȃ?
+" ???��??񂪏??????̏ꍇ?͑啶?????????̋??ʂⵂȂ?
 set ignorecase
-" ???����????ɑ啶?????܂܂??Ă????Ȃ??A???ʂ???
+" ???��????ɑ啶?????܂܂??Ă????Ȃ??A???ʂ???
 set smartcase
 
 " Vim ???Ő??l??10?i???ň??? (007++ == 010) => (007++ == 008)
@@ -159,7 +159,8 @@ set conceallevel=2
 set concealcursor=nvic
 augroup invisibleZenNTab
     autocmd! invisibleZenNTab
-    autocmd BufWinEnter * call SyntaxZenNTab()
+    " NOTE: 環境によってエラーになるイベントか否かが変わる
+    autocmd BufWinEnter * call SyntaxZenNTab() " 適宜変えたし
 augroup END
 function! SyntaxZenNTab()
     if exists("g:quicksilver_cat")
