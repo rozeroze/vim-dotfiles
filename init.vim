@@ -2,28 +2,27 @@
 " TODO: ここになんか描く
 """"""""""""""""""""""""""""" customize of me """""""""""""""""""""""""""""
 
-" key mapping
-source $VIM\customize\map.vim
-" vim-plug option <<dont use>>
-"source $VIM\customize\plugs.vim
-" rogue option
-source $VIM\customize\rogueOptions.vim
-" session_x
-source $VIM\customize\session_x\session_x.vim
-" syntax
-"source $VIM\customize\addSyntax.vim
-" chatwork
-source $VIM\customize\chatwork.vim
-" chess game
-source $VIM\customize\chess.vim
-" secret :set path+=C:\dev\会社名\プロジェクト名\** etc.
-source $VIM\customize\secret.vim
+"runtime! C:\vim\*.vim
+"runtime! C:/vim/*.vim
+" SORROW: runtimeだと、読み込まれない……？
+" (((; 'Д')Ξ⊃) 'Д),;'. なぜだっ！
+for v in split(expand('$VIM/customize/*.vim'), "\n")
+    "source v
+    "echo type(v)
+    " source 'C:/vim/customize/map.vim' はエラー（文字列として渡されている？）
+    execute('source ' . v)
+endfor
 
 " SORROW: ラインの魔術師を呼べない
-runtime! $VIM\customize\theLineOfTheMagician\*.vim
-source $VIM\customize\theLineOfTheMagician\statusline.vim
-" pineapple
-runtime! $VIM\customize\pineapple\*.vim
+"runtime! $VIM\customize\theLineOfTheMagician\*.vim
+" SORROW: cannot eat pineapple! why? (p'v')=p)'Д) OUCH!
+"runtime! $VIM\customize\pineapple\*.vim
+for v in split(expand('$VIM/customize/theLineOfTheMagician/*.vim'), "\n")
+    execute('source ' . v)
+endfor
+for v in split(expand('$VIM/customize/pineapple/*.vim'), "\n")
+    execute('source ' . v)
+endfor
 
 " ?E?B????hrE?T?C?Ya??̕ύX
 "if has("gui_running")
@@ -63,6 +62,7 @@ set backup
 set backupdir=C:\bak~
 
 " path ???ݒ肵?Afind?R?}???h???֗ィ??ɂ???
+set path+=$VIM
 set path+=$VIM\customize\**
 
 " ???��??񂪏??????̏ꍇ?͑啶?????????̋??ʂⵂȂ?
@@ -150,6 +150,7 @@ endfunction
 let g:quicksilver_cat = 1
 if exists("g:quicksilver_cat")
     " u enable setting, 2byte character 2 [eol], b4 GUI start
+    " ただし、環境による
     set list
     set listchars=eol:┸,trail:~,extends:>,precedes:<
 endif
