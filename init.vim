@@ -150,7 +150,8 @@ endfunction
 let g:quicksilver_cat = 1
 if exists("g:quicksilver_cat")
     " u enable setting, 2byte character 2 [eol], b4 GUI start
-    " ただし、環境による
+    " ただし、環境による　→　違った
+    " 別の環境で構築するときにエンコーディングを'utf-8'に修正すれば動作する
     set list
     set listchars=eol:┸,trail:~,extends:>,precedes:<
 endif
@@ -161,7 +162,8 @@ set concealcursor=nvic
 augroup invisibleZenNTab
     autocmd! invisibleZenNTab
     " NOTE: 環境によってエラーになるイベントか否かが変わる
-    autocmd BufWinEnter * call SyntaxZenNTab() " 適宜変えたし
+    " ここも同様に、'utf-8'でエンコーディングしなおせば解決する
+    autocmd BufWinEnter * call SyntaxZenNTab()
 augroup END
 function! SyntaxZenNTab()
     if exists("g:quicksilver_cat")
