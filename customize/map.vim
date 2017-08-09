@@ -1,7 +1,7 @@
 " normal mode
 "nnoremap ; :
 "nnoremap : ;
-nnoremap // :noh<CR>
+nnoremap // :<C-u>nohlsearch<CR><C-l>
 nnoremap <Space>w :<C-u>write<CR>
 nnoremap <Space>q :<C-u>quit<CR>
 nnoremap <Space>Q :<C-u>quit!<CR>
@@ -28,7 +28,8 @@ function! ConfirmUnitFile() " {{{
             if confirm("netrwのほうが優秀ですよ？それでもuniteを起動しますか？", "はい\nいいえ")
                 if confirm("やれやれ、ではuniteでよろしいのですね？主よ、罪深きものをお許しください", "はい\nいいえ")
                     " SORROW: 個人的にはuniteでも構わない
-                    execute("Unite file")
+                    "execute("Unite file")
+                    " NOTE: たしかこの環境では unite 入れていない
                 endif
             endif
         endif
@@ -46,8 +47,8 @@ endfunction " }}}
 "    vnoremap <Space>e :call emmet#expandAbbr(2,"")<CR>
     "inoremap <Space>e <C-r>=emmet#util#closePopup()<CR><C-r>=emmet#expandAbbr(0,"")<CR>
 "endif
-autocmd BufRead,BufNewFile *.html,*.cshtml nnoremap<buffer> <Space>e :call emmet#expandAbbr(3,"")<CR>
-autocmd BufRead,BufNewFile *.html,*.cshtml vnoremap<buffer> <Space>e :call emmet#expandAbbr(2,"")<CR>
+autocmd BufRead,BufNewFile *.html,*.cshtml,*.tpl nnoremap<buffer> <Space>e :call emmet#expandAbbr(3,"")<CR>
+autocmd BufRead,BufNewFile *.html,*.cshtml,*.tpl vnoremap<buffer> <Space>e :call emmet#expandAbbr(2,"")<CR>
 
 
 " tenki
@@ -57,5 +58,8 @@ nnoremap <Space>t :call OpenBrowser('http://www.tenki.jp/forecast/5/26/5110/2310
 nunmap <Space>w
 nnoremap <Space>w :<C-u>update<CR>
 
+" search after zz
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
 
 
