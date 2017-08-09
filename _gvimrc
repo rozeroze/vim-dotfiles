@@ -1,4 +1,9 @@
-colorscheme frozendaiquiri
+" TODO: more smart
+try
+    colorscheme frozendaiquiri
+catch
+    colorscheme torte
+endtry
 
 " あんず
 set guifont=あんずもじ等幅:h12:cSHIFTJIS:qDRAFT
@@ -34,4 +39,6 @@ set shortmess+=I
 " mouse return
 set mouse=n
 
+" invisible
+autocmd GUIEnter * set transparency=240
 
