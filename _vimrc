@@ -328,5 +328,21 @@ endfunction
 "autocmd BufEnter _vimrc,_gvimrc :WhatStateMyVimrcNow
 
 
+command! -nargs=* Put :call g:MyPut(<f-args>)
+command! Putme :call g:MyPut('%:r')
+command! PutMe :call g:MyPut('%:r')
+function! g:MyPut(expr) abort
+    " ex: Put %:r
+    let _winview = winsaveview()
+
+    put =expand(a:expr)
+    keepjumps call cursor(line('.') - 1, 0)
+    keepjumps join
+
+    let _lastcol = col('$') - 2 " col($) は標準で1多い数値を返す(行末補正?)。また、index0startの分?も考慮 計2
+    let _winview['col'] = _lastcol
+    let _winview['curswant'] = _lastcol
+    call winrestview(_winview)
+endfunction
 
 
