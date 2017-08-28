@@ -104,6 +104,9 @@ set scrolloff=3
 set sidescroll=1
 set sidescrolloff=1
 
+" python setting
+set path+=$HOME\AppData\Local\Programs\Python\Python35
+
 " ?J???[?X?L?[?}
 if has('gui_running') && !empty(glob('$VIM/vim80/colors/frozendaiquiri.vim'))
     colorscheme frozendaiquiri
@@ -142,52 +145,56 @@ set splitright
 set noautoread
 
 
-""" schedule
-autocmd VimEnter * nested if @% == '' | call s:schedule_intro() | endif
-function! s:schedule_intro()
-    let s:scdl_content = []
-    " TODO: そのうち googleカレンダーと同期したい
-    "       また、スケジュールの部分を別ファイルに分離する
-    " NOTE: UNIX時間
-    " TODO: UNIX時間に容易に変換できるVimScriptをつくるぞいっ！
-    " SORROW: 起動したのが月曜日の時は『ねえ、月曜日だよ。いまどんな気分？ねぇ、どんな気分？』と出力してはいけない
-    call add(s:scdl_content, { 'date': localtime(), 'message': 'localtime' })
-    call add(s:scdl_content, { 'date': 1501013200, 'message': '歯科検診' }) " 2017/8/1
-    call add(s:scdl_content, { 'date': 1502550000, 'message': 'ペルセウス座流星群が極大' }) " 2017/8/13
-    call add(s:scdl_content, { 'date': 1503327600, 'message': '皆既日食（北米方面）' }) " 2017/8/22
-    call add(s:scdl_content, { 'date': 1507042800, 'message': '中秋の名月' }) " 2017/10/4
-    call add(s:scdl_content, { 'date': 1507388400, 'message': '寒露。10月りゅう座流星群が極大' }) " 2017/10/8
-    call add(s:scdl_content, { 'date': 1507561200, 'message': 'アルデバラン食（北日本）。おうし座流星群が極大' }) " 2017/10/10
-    call add(s:scdl_content, { 'date': 1508511600, 'message': 'オリオン座流星群が極大' }) " 2017/10/21
-    call add(s:scdl_content, { 'date': 1510412400, 'message': 'レグルス食。おうし座北流星群が極大' }) " 2017/11/12
-    call add(s:scdl_content, { 'date': 1510930800, 'message': '新月。しし座流星群が極大。なお月明かりの影響がなく好条件' }) " 2017/11/18
-    call add(s:scdl_content, { 'date': 1511449200, 'message': '水星が東方最大離角' }) " 2017/11/24
-    call add(s:scdl_content, { 'date': 1512313200, 'message': '今年最大の満月' }) " 2017/12/4
-    call add(s:scdl_content, { 'date': 1513177200, 'message': 'ふたご座流星群が極大。月明かりの影響が少なく、好条件' }) " 2017/12/14
-    call add(s:scdl_content, { 'date': 1525014000, 'message': 'カマロン記念日' }) " 2018/4/30
-
-    """ schedule intro. reference by vim-splash
-    " SORROW: …… vim-splashを参考にしたはず。……一応はね
-    try
-        hide enew
-        setlocal buftype=nofile nowrap nolist nonumber norelativenumber bufhidden=wipe
-        call setline(1, '== schedule ==') | 1center
-        let s:now = localtime()
-        for s in s:scdl_content
-            if s['date'] < s:now + 60*60*24*90 " 3カ月前には表示
-                call append(line("."), strftime("%Y/%m/%d", s['date']) . ' ' . s['message'])
-            endif
-        endfor
-        redraw
-        " SORROW: 闇の女王の眼差しに魅入られて、光の道は閉ざされた
-        "         dont escape from dark! let escape character!
-        let char = nr2char(getchar())
-        silent execute 'enew'
-        call feedkeys(char)
-    catch
-        echon 'error: intro schedule'
-    endtry
-endfunction
+""" intro schedule {{{
+"if exists('g:loaded_intro_schedule') | finish | endif
+"let g:loaded_intro_schedule = 1
+"autocmd VimEnter * nested if @% == '' | call s:schedule_intro() | endif
+"function! s:schedule_intro()
+"    let s:scdl_content = []
+"    " TODO: そのうち googleカレンダーと同期したい
+"    "       また、スケジュールの部分を別ファイルに分離する
+"    " MEMO: https://github.com/itchyny/calendar.vim が参考になりそう
+"    " NOTE: UNIX時間
+"    " TODO: UNIX時間に容易に変換できるVimScriptをつくるぞいっ！
+"    " SORROW: 起動したのが月曜日の時は『ねえ、月曜日だよ。いまどんな気分？ねぇ、どんな気分？』と出力してはいけない
+"    call add(s:scdl_content, { 'date': localtime(), 'message': 'localtime' })
+"    "call add(s:scdl_content, { 'date': 1501013200, 'message': '歯科検診' }) " 2017/8/1
+"    "call add(s:scdl_content, { 'date': 1502550000, 'message': 'ペルセウス座流星群が極大' }) " 2017/8/13
+"    call add(s:scdl_content, { 'date': 1503327600, 'message': '皆既日食（北米方面）' }) " 2017/8/22
+"    call add(s:scdl_content, { 'date': 1507042800, 'message': '中秋の名月' }) " 2017/10/4
+"    call add(s:scdl_content, { 'date': 1507388400, 'message': '寒露。10月りゅう座流星群が極大' }) " 2017/10/8
+"    call add(s:scdl_content, { 'date': 1507561200, 'message': 'アルデバラン食（北日本）。おうし座流星群が極大' }) " 2017/10/10
+"    call add(s:scdl_content, { 'date': 1508511600, 'message': 'オリオン座流星群が極大' }) " 2017/10/21
+"    call add(s:scdl_content, { 'date': 1510412400, 'message': 'レグルス食。おうし座北流星群が極大' }) " 2017/11/12
+"    call add(s:scdl_content, { 'date': 1510930800, 'message': '新月。しし座流星群が極大。なお月明かりの影響がなく好条件' }) " 2017/11/18
+"    call add(s:scdl_content, { 'date': 1511449200, 'message': '水星が東方最大離角' }) " 2017/11/24
+"    call add(s:scdl_content, { 'date': 1512313200, 'message': '今年最大の満月' }) " 2017/12/4
+"    call add(s:scdl_content, { 'date': 1513177200, 'message': 'ふたご座流星群が極大。月明かりの影響が少なく、好条件' }) " 2017/12/14
+"    call add(s:scdl_content, { 'date': 1525014000, 'message': 'カマロン記念日' }) " 2018/4/30
+"
+"    """ schedule intro. reference by vim-splash
+"    " SORROW: …… vim-splashを参考にしたはず。……一応はね
+"    try
+"        hide enew
+"        setlocal buftype=nofile nowrap nolist nonumber norelativenumber bufhidden=wipe
+"        call setline(1, '== schedule ==') | 1center
+"        let s:now = localtime()
+"        for s in s:scdl_content
+"            if s['date'] < s:now + 60*60*24*90 " 3カ月前には表示
+"                call append(line("."), strftime("%Y/%m/%d", s['date']) . ' ' . s['message'])
+"            endif
+"        endfor
+"        redraw
+"        " SORROW: 闇の女王の眼差しに魅入られて、光の道は閉ざされた
+"        "         dont escape from dark! let escape character!
+"        let char = nr2char(getchar())
+"        silent execute 'enew'
+"        call feedkeys(char)
+"    catch
+"        echon 'error: intro schedule'
+"    endtry
+"endfunction
+""" }}}
 
 " quicksilver_cat
 let g:quicksilver_cat = 1
@@ -212,6 +219,9 @@ augroup invisibleZenNTab
 augroup END
 function! SyntaxZenNTab()
     if &filetype == 'jax'
+        " TODO: 調査　効果なし
+        call clearmatches()
+        setlocal ts=8 sts=8 sw=8 et
         return
     endif
     if exists("g:quicksilver_cat")
@@ -221,6 +231,22 @@ function! SyntaxZenNTab()
         "syntax match Tab /	/ conceal cchar=╂ " Tab
         highlight Tab term=reverse gui=undercurl guisp=#80a0ff
         match Tab /	/
+        " and other
+        " NOTE: match は常に上書きされ、ひとつしか保持できない
+        " NOTE: undercurl(波線)は guisp で指定できるのに下線はできない
+        "highlight Colon term=underline gui=underline guifg=#d67388
+        "highlight Semicolon term=undercurl gui=undercurl guisp=#d67388
+        highlight Colon term=bold gui=bold guifg=#86b781
+        highlight Semicolon term=bold gui=bold guifg=#d67388
+        "match Colon /:/
+        "match Semicolon /;/
+        call matchadd('Colon', '\U\zs:')
+        call matchadd('Semicolon', ';')
+        " comma and period
+        highlight Comma term=none gui=none guifg=#c2f88f
+        highlight Period term=none gui=none guifg=#e2d7ff
+        call matchadd('Comma', ',')
+        call matchadd('Period', '\.')
         set ts=4 sts=4 sw=4 et
     endif
 endfunction
@@ -345,4 +371,20 @@ function! g:MyPut(expr) abort
     call winrestview(_winview)
 endfunction
 
+" python indent
+augroup PythonSetting
+    autocmd!
+    autocmd FileType python,py setlocal ts=8 sts=3 sw=3 et
+augroup END
+
+command! ExL call ExecuteLine()
+function! ExecuteLine()
+    let l:cmd = getline('.')
+    exec l:cmd
+endfunction
+command! ExLs call ExecuteLines()
+function! ExecuteLines()
+    " TODO: Visual mode
+    " NOTE: あと、選択範囲を実行するっていうの、どこかで見た気がする
+endfunction
 
