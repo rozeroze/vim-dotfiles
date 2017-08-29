@@ -34,6 +34,7 @@ endfunction
 
 command! YuleMessageTest :call s:yuleMessageTest()
 function! s:yuleMessageTest()
+    echo ''
     call g:yuleriotzit#yule_message#message('勇者『禿に用はないぜ』')
     call g:yuleriotzit#yule_message#message('国王からの呼出状を持参した城兵に、勇者は言った。')
     call g:yuleriotzit#yule_message#message('呼出を拒否するのは今月で７度目だった。')
@@ -51,4 +52,5 @@ function! s:yuleMessageTest()
     call g:yuleriotzit#yule_message#message('勇者『そんなのはいらん』')
     call g:yuleriotzit#yule_message#message('城兵『いえ、必要になりますとも。きっとね』')
     call g:yuleriotzit#yule_message#message('国王よりも怖い城兵が微笑むと、勇者は口がきけなくなった。')
+    set statusline&
 endfunction
