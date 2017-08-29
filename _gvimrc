@@ -1,9 +1,10 @@
-" TODO: more smart
-try
+
+if has('gui_running') && !empty(glob('$VIM/vim80/colors/frozendaiquiri.vim'))
+    " https://github.com/rozeroze/vim-colorschemes/blob/master/colors/frozendaiquiri.vim
     colorscheme frozendaiquiri
-catch
-    colorscheme torte
-endtry
+else
+    colorscheme elflord
+endif
 
 " あんず
 set guifont=あんずもじ等幅:h12:cSHIFTJIS:qDRAFT
@@ -21,22 +22,19 @@ set rulerformat=%15(%c%V\ %p%%%)
 
 " syntax test
 " FIXME: シンタックス '!!!' と '???' が認識されない
-"autocmd BufRead *.vim so $VIM\customize\suiSyntax.vim
-"autocmd BufRead *.* syn keyword Todo contained TODO FIXME OPTIMIZE HACK REVIEW XXX NOTE !!! ???
 autocmd BufRead *.vim syn keyword vimTodo contained TODO FIXME OPTIMIZE HACK REVIEW XXX NOTE !!! ??? SORROW IMPLEMENT_LATER
 autocmd BufRead *.cs syn keyword csTodo contained TODO FIXME OPTIMIZE HACK REVIEW XXX NOTE !!! ??? SORROW IMPLEMENT_LATER
 autocmd BufRead *.js syn keyword javaScriptCommentTodo contained TODO FIXME OPTIMIZE HACK REVIEW XXX NOTE !!! ??? SORROW IMPLEMENT_LATER
 
 
-" return of VISUALBELL! 帰ってきた男たち
-" NOTE: おそらくだが、vimrcの後に読まれる何かでリセットされている
-"       仕様で、GUIがスタートするときにリセットされるようだ
+" NOTE: 仕様で、GUIがスタートするときにリセットされるようだ
+" :help visualbell
 set t_vb=
 
 " intro gvimrc でないと効かないらしい
 set shortmess+=I
 
-" mouse return
+" over write
 set mouse=n
 
 " invisible
