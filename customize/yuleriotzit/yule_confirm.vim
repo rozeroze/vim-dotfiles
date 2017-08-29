@@ -5,7 +5,7 @@
 " default setting
 let g:yuleriotzit#statusline#confirm_interval = 100
 
-command! -nargs=* YuleTest :call g:yuleriotzit#yule_confirm#confirm(<f-args>)
+command! -nargs=* YuleConfirm :call g:yuleriotzit#yule_confirm#confirm(<f-args>)
 function! g:yuleriotzit#yule_confirm#confirm(...) abort
     if a:0 > 0
         let status = &statusline
@@ -39,7 +39,8 @@ function! g:yuleriotzit#yule_confirm#confirm(...) abort
                 let choice_index -= choice_index == 1 ? 0 : 1
             elseif command == 'l'
                 let choice_index += choice_index == choice_num ? 0 : 1
-            elseif command == '' || command == ' '
+            elseif command == '
+' || command == ' '
                 let &statusline = status
                 return choice_index
             endif
@@ -63,6 +64,22 @@ function! g:yuleriotzit#yule_confirm#confirm(...) abort
 
     else
         " no action
+    endif
+endfunction
+
+command! YuleConfirmTest :call s:yuleConfirmTest()
+function! s:yuleConfirmTest()
+    echo ''
+    let s:gender = g:yuleriotzit#yule_confirm#confirm('your gender', 'male', 'female')
+    let s:age = g:yuleriotzit#yule_confirm#confirm('your age', 'over 20', 'under 20')
+    if s:gender == 1 && s:age == 1
+        echo 'you are man'
+    elseif s:gender == 1 && s:age == 2
+        echo 'you are boy'
+    elseif s:gender == 2 && s:age == 1
+        echo 'you are women'
+    elseif s:gender == 2 && s:age == 2
+        echo 'you are girl'
     endif
 endfunction
 
