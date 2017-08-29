@@ -16,11 +16,17 @@ function! s:RecordOfYourJourney()
     redraw
     let yn = nr2char(getchar())
     if yn == 'y'
-        silent execute("w")
+        let l:message = ['ぼ', 'う', 'け', 'ん', 'の', 'し', 'ょ', 'を'
+                        \, 'き', 'ろ', 'く', 'し', 'ま', 'し', 'た']
+        try
+            silent execute("w")
+        catch
+            let l:message = ['ぼ', 'う', 'け', 'ん', 'の', 'し', 'ょ', 'を',
+                              \'き', 'ろ', 'く', 'で', 'き', 'ま', 'せ', 'ん', 'で', 'し', 'た']
+        endtry
         "echo 'save'
         let &l:statusline = ''
-        for m in ['ぼ', 'う', 'け', 'ん', 'の', 'し', 'ょ', 'を'
-                    \, 'き', 'ろ', 'く', 'し', 'ま', 'し', 'た']
+        for m in l:message
             let &l:statusline .= m
             redraw
             sleep 100ms
