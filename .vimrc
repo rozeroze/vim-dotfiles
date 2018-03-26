@@ -92,7 +92,7 @@ set noswapfile
 
 set scrolloff=3
 set sidescroll=1
-set sidescrolloff=1
+set sidescrolloff=5
 
 set path+=$HOME\AppData\Local\Programs\Python\Python35
 "set pyxversion=3
@@ -102,6 +102,7 @@ syntax on
 au BufRead,BufNewFile *.cshtml  set filetype=html
 
 set visualbell
+set t_vb=
 
 set splitbelow
 set splitright
@@ -134,7 +135,7 @@ endfunction
 "   <div c#ass="start">
 "     <span class="middle">if you put '%' button</span>
 "   </div>
-"
+" rem: cursor is moved match-tag
 "   <div class="start">
 "     <span class="middle">cursor moves to match-tag</span>
 "   <#div>
