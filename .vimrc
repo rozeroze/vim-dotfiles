@@ -92,7 +92,7 @@ set noswapfile
 
 set scrolloff=3
 set sidescroll=1
-set sidescrolloff=5
+set sidescrolloff=3
 
 set path+=$HOME\AppData\Local\Programs\Python\Python35
 "set pyxversion=3
