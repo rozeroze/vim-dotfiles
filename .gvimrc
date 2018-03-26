@@ -25,7 +25,7 @@ set columns=80
 set ruler
 set rulerformat=%15(%c%V\ %p%%%)
 
-" Gui only
+" reset when gui start
 set t_vb=
 
 " intro gvimrc でないと効かないらしい
