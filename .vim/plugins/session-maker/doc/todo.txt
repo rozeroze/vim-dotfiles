@@ -1,0 +1,37 @@
+﻿" Vim plugin script
+" File: session.vim
+" Summary: todo list  - session.vim
+" Authors: rozeroze <rosettastone1886@gmail.com>
+" License: MIT
+" Last Change: 2018 April 3
+
+""" TODO
+new option 'update' {{{
+Summary:
+  :Session -update
+  にてsessionの更新ができるようにする
+  :Session -loadが行われた際に、どのsessionかの情報を保持、
+  :Session -updateでそのsessionを上書きする
+Example:
+  :Session -load test
+  ...editing... " なんらかの変更
+  :Session -update と :Session -make test は等価
+}}}
+
+new feature 'rename' {{{
+Summary:
+  :Session -rename test1 test2
+  にてtest1という名前で保持されているsessionをtest2にrename
+  sessionの他にviminfo,quickfixなどもあれば、そちらもrename
+  rename対象をload済みの場合は、update対象sessionも対応する
+}}}
+
+rename option 'load & list' {{{
+Summary:
+  現状、loadとlistがともにlから始まるので、
+  :Session -l のlがどちらなのか判別しがたい
+  どちらかをrenameする
+}}}
+
+" vim: set ft=vim fdm=marker :
+" vim: set ts=3 sts=3 sw=3 et :
