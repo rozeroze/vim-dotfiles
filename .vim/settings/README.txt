@@ -14,8 +14,17 @@ loadされるはずだが、pluginという感じではないためsettingsと�
 
 # Rule of
 scriptファイルの命名規則
-・許される文字は[a-z0-9]と記号_(underscore)のみ
+・許される文字は[a-zA-Z0-9]と記号_(underscore)のみ
 ・基本的に[a-z]のみで命名するのが望ましい
+命名の良し悪しの参考に
+  goat.vim	名前から機能がわかる必要はなく、
+	素晴らしい名前
+  abbreviate.vim	普通によい名前
+  bufferlist.vim	複数単語をそのままつなげても
+	意味がわかり、よい名前
+  test_something.vim	可、あまりよくないが、許される名前
+  intro-schedule.vim	-(ハイフン)があり、よくない名前
+  loremIpsum.vim	大文字が含まれており、よくない名前
 
 
 # Variable
@@ -26,12 +35,18 @@ ex: testに設定値を渡すなら、下記の通りに
 let g:rzrz.test = { 設定値 }
 
 
-# Git
-現状、自分のメインPCのOSがgitというかアプリケーションに対応していないため、
-まだGit管理しておらず、そのうちGit管理する予定
+# Git (under control)
+completechar.vim
+goat.vim
+moveme.vim
+quickfixdo.vim
+recordjourney.vim
+runsoon.vim
+visualization.vim
+visualsearch.vim
 
 
-# ファイル詳細 2018/2/19
+# ファイル詳細 2018/3/16
 abbreviate.vim	短縮入力(after/ftplugin移行予定)
 buffer-list.vim	buffer-listからVimで開く
 chess.vim	chessができる
@@ -60,6 +75,11 @@ fightline.vim	格闘ゲーム on vim
 typeline.vim	タイピング
 recordjourney.vim	冒険の書を記録しますか?
 rozeonline.vim	入力補助? ……邪魔
+mandragora.vim	よくわかる薬草学
+littlehelper.vim	with a little help from my friends
+locker.vim	Vim Locked With Password
+laguillotine.vim	ラ・ギロティーヌ
+keylogger.vim	Key Logger
 
 
 " vim: set ts=38 sts=38 sw=38 noet :
