@@ -1,4 +1,6 @@
-""" record of your journey
+""" Theme: record of your journey
+""" Summary: 冒険の書を記録しますか?
+""" Version: 2018-06-20
 
 
 if exists('g:loaded_recordjourney')
