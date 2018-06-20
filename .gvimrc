@@ -1,20 +1,23 @@
+set encoding=utf-8
+scriptencoding utf-8
 
 """ colorscheme
 if has('gui_running')
    " https://github.com/rozeroze/vim-colorschemes/blob/master/colors/frozendaiquiri.vim
    colorscheme frozendaiquiri
 else
-   colorscheme elflord
+   colorscheme desert
 endif
 
-""" あんず
+""" フォント
 set guifont=あんずもじ等幅:h12:cSHIFTJIS:qDRAFT
 
 """ list
 set list
-set listchars=eol:┸,tab:[_,trail:~,extends:>,precedes:<
+"set listchars=eol:┸,tab:[_,trail:~,extends:>,precedes:<
+set listchars=eol:^,tab:[_,trail:~,extends:>,precedes:<
 
-""" GUI　オプション
+""" GUI オプション
 set guioptions=
 
 """ Vim ウィンドウサイズ
