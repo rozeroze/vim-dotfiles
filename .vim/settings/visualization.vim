@@ -1,4 +1,6 @@
-﻿""" visualization char
+""" Theme: visualization char
+""" Summary: 特殊文字をハイライトする
+""" Version: 2018-06-20
 
 
 if exists('g:loaded_visualization')
@@ -10,11 +12,23 @@ let g:loaded_visualization = 1
 " MEMO: 下記の設定を前提にしている(色遣いなど)
 "       set guifont=あんずもじ等幅:h12:cSHIFTJIS:qDRAFT
 "       colorscheme frozendaiquiri
+" TODO: コマンドでハイライトの有無を制御できるように変更する
+"       'highlight'がおそらくglobalみたいなものなので、
+"       autocmdを外し、stateによる管理形式にする
+" TODO: highlight部分の修正
+
+let s:visualizable = v:true
 
 augroup VisualizeChar
    autocmd!
-   autocmd BufWinEnter * :call <SID>VisualizeOn()
+   autocmd BufWinEnter * :call <SID>Visualize()
 augroup END
+
+function! s:Visualize()
+   if s:visualizable
+      call s:VisualizeOn()
+   endif
+endfunction
 
 function! s:VisualizeOn()
    " invisible
