@@ -34,12 +34,25 @@ let g:loaded_chessboard = 1
 let g:loaded_quickfixdo = 1
 "let g:loaded_rolling_color = 1
 let g:loaded_rozeonline = 1
+let g:loaded_dotgraph = 1
+let g:loaded_keylogger = 1
+let g:loaded_mastercancel = 1
+let g:loaded_lazystep = 1
+let g:loaded_slum = 1
+"let g:loaded_writeorders = 1
 let g:rzrz = {}
 let g:rzrz.goat = {
          \ 'wm': 'D:\workmemory',
-         \ 'workmmemory': 'D:\workmemory'
+         \ 'workmemory': 'D:\workmemory'
          \}
 call extend(g:rzrz.goat, secret#get_goat())
+let g:rzrz.expandspace = {
+         \ 'default': v:true
+         \}
+let g:rzrz.moveme = {
+         \ 'ascii_enable': v:true,
+         \ 'ascii_file': expand('~/.vim/settings/moveme.ascii.txt')
+         \}
 """ my-settings
 for spath in split(glob($HOME.'/.vim/settings/*.vim'), '\n')
    execute 'source ' . spath
@@ -88,6 +101,7 @@ set cryptmethod=blowfish2
 
 set cursorline
 set formatoptions=q
+set updatecount=0
 set noswapfile
 
 set scrolloff=3
@@ -119,6 +133,12 @@ set winaltkeys=no
 set runtimepath^=$HOME/.vim
 set runtimepath+=$HOME/.vim/after
 
+set maxmem=2000000
+set maxmempattern=1000
+set maxmemtot=2000000
+
+" cui
+"colorscheme murphy
 
 """ easy command
 " get current file path {{{
@@ -126,6 +146,16 @@ command! GetCurrentFilePath call GetCurrentFilePath()
 function! GetCurrentFilePath()
    let path = expand("%:p")
    let @* = path
+endfunction
+" }}}
+" open explorer on current directory {{{
+" overwrite command 'Exp' what defined by netrw
+command! Exp call OpenExplorer()
+function! OpenExplorer()
+   " NOTE: '!start ' にてエクスプローラーが開く
+   "       '!start' だとプロンプトが開く
+   "       おそらくOS依存
+   !start 
 endfunction
 " }}}
 
