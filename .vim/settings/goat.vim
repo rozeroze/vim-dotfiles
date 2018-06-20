@@ -1,4 +1,6 @@
-""" take it easy, go to file
+""" Theme: take it easy, go to file
+""" Summary: 予め予約されたファイルを開くことができる
+""" Last Change: 2018-06-14
 
 
 if exists('g:loaded_goat')
@@ -7,16 +9,19 @@ endif
 let g:loaded_goat = 1
 
 " variable
+let s:goat = {}
+let s:goat['vimrc']   = '$MYVIMRC'
+let s:goat['.vimrc']  = '$MYVIMRC'
+let s:goat['gvimrc']  = '$MYGVIMRC'
+let s:goat['.gvimrc'] = '$MYGVIMRC'
+let s:goat['home']    = '$HOME'
+let s:goat['plugins'] = '$VIM/plugins'
+let s:goat['vim']     = '$HOME/.vim'
+let s:goat['.vim']    = '$HOME/.vim'
+" ユーザ指定のパスを追加する 同名のものがあれば上書きする
 if exists('g:rzrz.goat')
-   let s:goat = g:rzrz.goat
-else
-   let s:goat = {}
+   call extend(s:goat, g:rzrz.goat, "force")
 endif
-let s:goat.vimrc = '$MYVIMRC'
-let s:goat.gvimrc = '$MYGVIMRC'
-let s:goat.home = '$HOME'
-let s:goat.plugins = '$VIM/plugins'
-let s:goat['.vim'] = '$HOME/.vim'
 
 " command
 command! -nargs=+ Goat :call <SID>Goat(<f-args>)
