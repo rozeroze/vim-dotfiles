@@ -7,13 +7,13 @@ endif
 let g:loaded_recordjourney = 1
 
 let s:record = {}
-let s:record.lang = 'jp'
-if s:record.lang == 'jp'
+let s:record.lang = split(&helplang, ',')[0]
+if s:record.lang == 'ja'
    let s:record.confirm = 'ぼうけんのしょをきろくしますか？'
    let s:record.success = 'ぼうけんのしょをきろくしました'
    let s:record.fail = 'ぼうけんのしょをきろくできませんでした'
 elseif s:record.lang == 'en'
-   let s:record.confirm = 'Do you record your journey?'
+   let s:record.confirm = 'Will you record your journey?'
    let s:record.success = 'Recorded your journey!'
    let s:record.fail = 'The record of the journey was lost!'
 else
