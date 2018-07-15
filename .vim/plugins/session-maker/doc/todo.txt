@@ -3,7 +3,7 @@
 " Summary: todo list  - session.vim
 " Authors: rozeroze <rosettastone1886@gmail.com>
 " License: MIT
-" Last Change: 2018 April 3
+" Version: 2018-07-09
 
 """ TODO
 new option 'update' {{{
@@ -15,6 +15,7 @@ Summary:
 Example:
   :Session -load test
   ...editing... " なんらかの変更
+  このとき
   :Session -update と :Session -make test は等価
 }}}
 
@@ -31,7 +32,31 @@ Summary:
   現状、loadとlistがともにlから始まるので、
   :Session -l のlがどちらなのか判別しがたい
   どちらかをrenameする
+Example:
+  :Session list -> show
+  :Session load -> execute
 }}}
+
+add feature 'tag' in sessions {{{
+Summary:
+  sessionを作成するとき、読込のときにtagをつける
+  gitのbranchのタグ機能に触発されて、vim-sessionでも同様の機能を
+  複数のプロジェクトに携わっていたりすると欲しい機能
+  不足しているのはmkdirを実行する部分(mkdirが必要かどうかの判定も)
+Example:
+  ProjectName: ABC
+  Issue: 123
+  :Session make projectABC/issue123
+}}}
+
+new feature 'delete' {{{
+Summary:
+  makeしたsessionを削除する機能
+  今のところ、sessionは作られるばかりで、削除する機能はない
+Example:
+  :Session -delete test
+}}}
+
 
 " vim: set ft=vim fdm=marker :
 " vim: set ts=3 sts=3 sw=3 et :
