@@ -74,6 +74,7 @@ let g:rzrz.test = { 設定値 }
 completechar.vim
 goat.vim
 moveme.vim
+moveme.ascii.txt
 quickfixdo.vim
 recordjourney.vim
 runsoon.vim
