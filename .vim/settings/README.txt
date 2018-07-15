@@ -45,10 +45,10 @@ script例) test.vimにてerrorが発生した場合
 # Headers
 各scriptファイルのヘッダ部分にファイル情報を記載する
 例)
-""" Theme: 
-""" Summary: 
+""" Theme: echo filename
+""" Summary: 編集中のbufferがfileに紐付けられていればfilenameを表示する
 """ Files: filename.vim utf-8 bomb
-""" Last Change: 2018-06-11
+""" Version: 2018-06-11
 元々、各scriptの1行目にはダブルクォート3つと簡易英文があったのを廃止する
 その簡易英文はThemeとして残しはする
 
@@ -80,9 +80,10 @@ runsoon.vim
 visualization.vim
 visualsearch.vim
 fixregister.vim
+life.vim
 
 
-# ファイル詳細 2018-06-19
+# ファイル詳細 2018-07-10
 abbreviate.vim	短縮入力(after/ftplugin移行予定)
 bufferlist.vim	buffer-listからVimで開く
 chess.vim	chessができる
@@ -137,6 +138,9 @@ fixregister.vim	part of registers was fixed
 daychange.vim	日替わり定食(開発補助)
 pathogen.vim	病原体 develop(extend) fixregister
 task.vim	task list
+ruler.vim	the real ruler
+life.vim	LIFE -- 生命 --
+landscape.vim	景観……ああ、素晴らしきかな
 
 
 " vim: set ts=38 sts=38 sw=38 noet :
