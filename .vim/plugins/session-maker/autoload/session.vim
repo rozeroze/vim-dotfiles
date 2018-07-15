@@ -3,7 +3,7 @@
 " Summary: session make
 " Authors: rozeroze <rosettastone1886@gmail.com>
 " License: MIT
-" Last Change: 2018 Feb 10
+" Version: 2018-07-09
 
 
 function! session#session(...)
@@ -32,7 +32,7 @@ function! session#session(...)
       echo 'ERROR: type is wrong. - session.vim'
       return
    else
-      echo 'ERROR: error. - session.vim'
+      echo 'ERROR: error occurred. - session.vim'
       return
    endif
 endfunction
