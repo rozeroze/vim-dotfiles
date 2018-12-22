@@ -13,8 +13,7 @@ loadされるはずだが、pluginという感じではないためsettingsと�
 
 
 # Rule of CharSet
-scriptファイルはutf-8
-BOMの有無は保留、とりあえず現状の有無を調査してから
+scriptファイルはutf-8 BOMなし
 # Rule of Name
 scriptファイルの命名規則
 ・許される文字は[a-zA-Z0-9]と記号_(underscore)のみ
@@ -44,13 +43,14 @@ script例) test.vimにてerrorが発生した場合
 
 # Headers
 各scriptファイルのヘッダ部分にファイル情報を記載する
+Author(Maintainer)に rozeroze <rosettastone1886@gmail.com> を記載
+Versionは日付とすし、1.0.0のようなVersion管理方式は使わない
+VersionとDescriptionの間に空行が入ってもいい
 例)
-""" Theme: echo filename
-""" Summary: 編集中のbufferがfileに紐付けられていればfilenameを表示する
-""" Files: filename.vim utf-8 bomb
-""" Version: 2018-06-11
-元々、各scriptの1行目にはダブルクォート3つと簡易英文があったのを廃止する
-その簡易英文はThemeとして残しはする
+""" File: scarborough.vim
+""" Author: rozeroze <rosettastone1886@gmail.com>
+""" Version: 2018-08-07
+""" Description: Are you going to Scarborough Fair?
 
 
 # Variable
@@ -59,6 +59,9 @@ let g:rzrz = {}
 をsource settings/*する前に定義する
 ex: testに設定値を渡すなら、下記の通りに
 let g:rzrz.test = { 設定値 }
+->そもそも変数は渡さないようにする
+  必要な情報があればscriptに直書きする
+  * settingはもともと1ファイルで完結する程度のscript用です故
 
 
 # TODO
@@ -74,17 +77,15 @@ let g:rzrz.test = { 設定値 }
 completechar.vim
 goat.vim
 moveme.vim
-moveme.ascii.txt
 quickfixdo.vim
 recordjourney.vim
 runsoon.vim
 visualization.vim
 visualsearch.vim
 fixregister.vim
-life.vim
 
 
-# ファイル詳細 2018-07-10
+# ファイル詳細 2018-12-10
 abbreviate.vim	短縮入力(after/ftplugin移行予定)
 bufferlist.vim	buffer-listからVimで開く
 chess.vim	chessができる
@@ -129,7 +130,6 @@ slum.vim	windows only == slum owner
 instantset.vim	mask-cmd :set aaa=bbb to :Set aaa
 writeorders.vim	ご注文はWriteですか？
 lastdays.vim	死の日の記憶
-expandspace.vim	like 'expandtab' apple division
 confusion.vim	you have some-damage! you confused!
 project.vim	project box, easy starter
 crunch.vim	read crunches
@@ -142,6 +142,19 @@ task.vim	task list
 ruler.vim	the real ruler
 life.vim	LIFE -- 生命 --
 landscape.vim	景観……ああ、素晴らしきかな
+vimsql.vim	vim完結型の簡易的なDBを実装
+doteditor.vim	おえかき
+bitmap_gen.exe	doteditor.vim用 bitmap作成exe
+gif_gen.exe	doteditor.vim用Ügif作成exe
+vimvc.vim	VimでわかるMVC ヴィムブイシー
+binedit.vim	binary file editable
+chilimarker.vim	Column HIghLIght MARKER
+float.vim	Make Vim-Screen Float
+visualplus.vim	improve visual-mode
+worms.vim	worms wriggling around vim
+blinksearch.vim	search-highlight blinking
+completion.vim	M & A: completechar & input
+history.vim	show history-of-file, by git log
 
 
 " vim: set ts=38 sts=38 sw=38 noet :
