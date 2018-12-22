@@ -21,10 +21,10 @@
 "       endfunction
 "     - function! s:FuncWithCommand()
 "          echo 'same as command-name'
-"          " ex) command Test :call <sid>Test()
-"          "     function s:Test()
-"          "        echo 'this is test function'
-"          "     endfunction
+"          " ex) | command Test :call <sid>Test()
+"          "     | function s:Test()
+"          "     |    echo 'this is test function'
+"          "     | endfunction
 "       endfunction
 " SetOptions: {{{3
 "   option-name must be full
@@ -40,18 +40,51 @@
 "   when toggle opt, use '!'
 "        bad-case => set invnumber
 "       good-case => set number!
+"   when set-args, use '='
+"        bad-case => set tabstop:4
+"       good-case => set tabstop=4
+"   set multiple-options, no-args ahead
+"        bad-case => set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+"       good-case => set expandtab tabstop=4 softtabstop=4 shiftwidth=4
+"   and over 80 characters, use shortening-name
+"        bad-case => set number relativenumber cursorline cursorcolumn ...
+"       good-case => set nu rnu cul cuc so=0 siso=0
+"   however if on that time, it is better what divide lines
+"     better-case => set number relativenumber
+"                    set cursorlien cursorcolumn
+"                    set scrolloff=0 sidescrolloff=0
+"   only modeline is an exceptions, it is always shortening-name
+"        bad-case => /* vim: set foldmethod=marker foldlevel=1 */
+"       good-case => /* vim: set fdm=marker fdl=1 */
 " Coding: {{{3
 "   coding .vimrc, .gvimrc or vim-file
-"     indent is not tab, it is space.
+"     using indent with space, not tab
 "     number-of-spaces is 3.
 "     character-set is utf-8, nobomb
-" KeyCodes: {{{3
+"   when editing project-files, undering the project-rules
+" KeyCode: {{{3
 "   help 'key-notation' / 'key-codes', 'keycodes'
 "     use lower case
-"        bad-case => <Space>
-"        bad-case => <CR>
-"       good-case => <space>
-"       good-case => <cr>
+"        bad-case => nnoremap <Space>s :call <SID>Save('%')<CR>
+"       good-case => nnoremap <space>s :call <sid>Save('%')<cr>
+" Lines: {{{3
+"   coding vim-script
+"     make new line as much as possible
+"        bad-case => if status | call something() | endif
+"       good-case => if status
+"                       call something()
+"                    endif
+"        bad-case => for item in list | call something(item) | endfor
+"       good-case => for item in list
+"                       call something(item)
+"                    endfor
+"     also is it necessary to short-liner, you can it
+"                 => for item in list
+"                       call something(item) | endfor
+"     case of what a similar sentence was continued, you can one-liner
+"                 => if flag['a'] | call valid(flag, 'a') | endif
+"                    if flag['b'] | call valid(flag, 'b') | endif
+"
 " }}}2
 " at first {{{2
 set nocompatible
@@ -60,6 +93,8 @@ scriptencoding utf-8
 let s:is_win  = has('win32')
 let s:is_mac  = has('mac')
 let s:is_unix = has('unix')
+let s:enable_package = has('packages')
+let s:enable_timer   = has('timers')
 if s:is_win
    " runtimepath ~/vimfiles -> ~/.vim
    let &runtimepath = substitute(&runtimepath,
@@ -68,10 +103,27 @@ if s:is_win
             \ 'g')
 endif
 set path+=$HOME\.vim
-set packpath+=$HOME\.vim
-let g:user = {}
-let g:user.name = 'rozeroze'
-let g:user.mail = 'rosettastone1886@gmail.com'
+if s:enable_package
+   set packpath+=$HOME\.vim
+endif
+if !exists('g:user')
+   let g:user = {}
+   let g:user.name = 'rozeroze'
+   let g:user.mail = 'rosettastone1886@gmail.com'
+   function g:user.comment(...) abort
+      return a:0 ? printf(&commentstring, printf('%s <%s>', g:user.name, g:user.mail))
+               \ : printf('%s <%s>', g:user.name, g:user.mail)
+   endfunction
+endif
+if !exists('g:date')
+   let g:date = {}
+   function g:date.today()
+      return strftime('%Y%m%d')
+   endfunction
+   function g:date.now()
+      return strftime('%Y/%m/%d %H:%M')
+   endfunction
+endif
 " }}}2
 " }}}1
 
@@ -90,8 +142,8 @@ set conceallevel=2
 set concealcursor=nvic
 set synmaxcol=1000
 set foldmethod=marker
-set splitbelow
-set splitright
+set nosplitbelow
+set nosplitright
 " assistantce {{{2
 set expandtab
 set tabstop=4
@@ -108,6 +160,7 @@ set infercase
 set nrformats=
 set formatoptions=q
 set winaltkeys=no
+set viminfo=
 set cryptmethod=blowfish2
 " vim action {{{2
 set fileencodings=utf-8,ucs-2,ucs-2le,utf-16,utf-16le,euc-jp,cp932
@@ -116,7 +169,7 @@ set noundofile
 set noswapfile
 set updatecount=0
 set backup
-set backupdir=C:\bak~
+set backupdir=~/bak,~/tmp
 set noautoread
 set maxmem=2000000
 set maxmempattern=1000
@@ -127,26 +180,23 @@ set noerrorbells
 " }}}1
 
 " mappings {{{1
-" normal-mode <space>* {{{2
-nnoremap <space>w :<c-u>update<cr>
-nnoremap <space><space>w :<c-u>write!<cr>
-nnoremap <space>q :<c-u>quit<cr>
-nnoremap <space><space>q :<c-u>quit!<cr>
-nnoremap <space><space><space>q :<c-u>quitall!<cr>
-nnoremap <space>4 <s-$>
-nnoremap <space>5 <s-%>
-nnoremap <space>; :
+" normal-mode <leader> {{{2
+let mapleader = "\<space>"
+nnoremap <leader>w :<c-u>update<cr>
+nnoremap <leader><leader>w :<c-u>write!<cr>
+nnoremap <leader><leader><leader>w :<c-u>set buftype& <bar> w<cr>
+nnoremap <leader>q :<c-u>quit<cr>
+nnoremap <leader><leader>q :<c-u>quit!<cr>
+nnoremap <leader><leader><leader>q :<c-u>quitall!<cr>
+nnoremap <leader>4 <s-$>
+nnoremap <leader>5 <s-%>
+nnoremap <leader>; :
 " searches {{{2
-nnoremap / /\v
-nnoremap ? ?\v
 nnoremap <silent> // :<c-u>let v:hlsearch = !v:hlsearch<cr>
 nnoremap <silent> * :let [@/, v:hlsearch] = [printf('\<%s\>', expand('<cword>')), v:true]<cr>
 nnoremap <silent> # :let [@/, v:hlsearch] = [printf('\<%s\>', expand('<cword>')), v:true]<cr>
 nnoremap <silent> g* :let [@/, v:hlsearch] = [expand('<cword>'), v:true]<cr>
 nnoremap <silent> g# :let [@/, v:hlsearch] = [expand('<cword>'), v:true]<cr>
-" indent-change {{{2
-vnoremap <silent> < <gv
-vnoremap <silent> > >gv
 " }}}1
 
 " TODO: divide
@@ -169,6 +219,9 @@ let g:loaded_colorschemer = 1
 let g:loaded_ruler = 1
 "let g:loaded_life = 1
 "let g:loaded_vimdb = 1
+let g:loaded_completechar = 1
+let g:loaded_input = 1
+let g:loaded_fixregister = 1
 " variables {{{2
 " moveme
 let g:moveme = {}
@@ -181,30 +234,17 @@ let g:session = {}
 let g:session.quickfix = v:true
 " chiffon
 let g:chiffon = {}
-let g:chiffon.default = 'anz'
-let g:chiffon.anz = 'あんずもじ等幅:h12:cSHIFTJIS:qDRAFT'
-let g:chiffon.misaki = '美咲ゴシック:h12:cSHIFTJIS:qDRAFT'
-let g:chiffon.myrica = 'MyricaM_M:h12:b:cSHIFTJIS:qDRAFT'
+let g:chiffon.default = { 'font': 'あんずもじ等幅:h12:cSHIFTJIS:qDRAFT' }
+let g:chiffon.win = { 'font': 'Consolas:h12:b', 'wide': 'HGｺﾞｼｯｸE:h12' }
+let g:chiffon.mac = { 'font': 'Osaka－等幅:h12' }
+let g:chiffon.anz = { 'font': 'あんずもじ等幅:h12:cSHIFTJIS:qDRAFT' }
+let g:chiffon.misaki = { 'font': '美咲ゴシック:h12:cSHIFTJIS:qDRAFT' }
+let g:chiffon.myrica = { 'font': 'MyricaM_M:h12:b:cSHIFTJIS:qDRAFT' }
 " chatwork
-if filereadable(expand('$HOME/.vim/plugin/chatwork/chatwork.json'))
-   let g:chatwork = json_decode(join(readfile(expand('$HOME/.vim/plugin/chatwork/chatwork.json'))))
+if filereadable(expand('$HOME/.vim/pack/packages/opt/chatwork/chatwork.json'))
+   let g:chatwork = json_decode(join(readfile(expand('$HOME/.vim/pack/packages/opt/chatwork/chatwork.json'))))
 endif
 " load {{{2
-" plugins
-for spath in split(glob($HOME . '/.vim/plugins/*'), '\n')
-   if spath !~# '\~$' && isdirectory(spath)
-      if !exists('g:loaded_' . split(spath, '\\')[-1])
-         "let &runtimepath .= ',' . spath
-      endif
-   end
-endfor
-for spath in split(glob($HOME . '/.vim/after/plugins/*'), '\n')
-   if spath !~# '\~$' && isdirectory(spath)
-      if !exists('g:loaded_' . split(spath, '\\')[-1])
-         "let &runtimepath .= ',' . spath
-      endif
-   end
-endfor
 " settings
 for spath in split(glob($HOME . '/.vim/settings/*.vim'), '\n')
    if !exists('g:loaded_' . fnamemodify(spath, ':t:r'))
@@ -213,36 +253,11 @@ for spath in split(glob($HOME . '/.vim/settings/*.vim'), '\n')
 endfor
 unlet spath
 " packages
-" matchit {{{3
-" ex: # is cursor
-"   <div c#ass="start">
-"     <span class="middle">if you put '%' button</span>
-"   </div>
-" rem: cursor is moved match-tag
-"   <div class="start">
-"     <span class="middle">cursor moves to match-tag</span>
-"   <#div>
-packadd matchit
-" expandspace {{{3
-" interchange multibyte-space to spaces when inserting it
-" for example, 'expandtab' is convert <tab> to spaces.
-" likewise, this convert <multibyte-space> to spaces.
-packadd expandspace
-" moveme {{{3
-" :Moveme you can move the Vim
-"   move command:
-"     - h move left
-"     - j move down
-"     - k move up
-"     - l move right
-"   resize command:
-"     - H smallen number-of-columns
-"     - J enlarge number-of-lines
-"     - K smallen number-of-lines
-"     - L enlarge number-of-columns
-"     - < smallen columns and lines
-"     - > enlarge columns and lines
-packadd moveme
+if s:enable_package
+   packadd matchit
+   silent! packadd expandspace
+   silent! packadd moveme
+endif
 " }}}1
 
 " languages {{{1
@@ -256,8 +271,20 @@ endif
 " }}}1
 
 " functions {{{1
-
-" " }}}1
+" test RW {{{2
+function! RW(test, ...)
+   echo a:test
+   if a:0 > 0
+      echo a:1
+   endif
+endfunction
+" test Blink {{{2
+function! Blink()
+   let v:hlsearch = !v:hlsearch
+   redraw
+   sleep 50ms
+endfunction
+" }}}1
 
 " commands {{{1
 " open explore on windows {{{2
@@ -286,4 +313,4 @@ function! s:Diff()
 endfunction
 " }}}1
 
-" vim: set ts=3 sts=3 sw=3 et fdm=marker :
+" vim: set et ts=3 sts=3 sw=3 fdm=marker fdl=1 :
