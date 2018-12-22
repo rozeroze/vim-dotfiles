@@ -1,3 +1,8 @@
 ### README
 
-現在plugins/settingsで管理しているものを順次package化しよう
+~/.vim/settings/expandspaceをpackage化する
+ -> finish
+
+cssなどで #rrggbb の色をbackgroundで表示する
+ -> おそらく他にあるけど、作ります？
+
