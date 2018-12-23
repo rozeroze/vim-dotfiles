@@ -1,5 +1,7 @@
 # README
 
+### Message Grouping
+
 messageをなんらかの方法でグルーピングしたい
 {motion} を2つ追加してみるか……
 
@@ -46,4 +48,20 @@ draft-2)
    なお、この案が採用されることはないだろう
    テキストベースであることに強い信頼があるからだ（個人の主観であり……）
 
+### Config File
 
+今現在、package/chatwork/chatwork.jsonに
+TokenやルームIDを保持しているが、ついさっきその情報をそのまま
+Githubに上げそうになった
+危ないのでrenameする
+
+drafts)
+   ~/.vim-chatwork
+   ~/.vim/.chatwork
+   ユーザディレクトリ直下に置くならば*vim-*というprefixをつけておいたほうが無難
+   .vim/の下に置くならばprefixなどは不要だが、上記のパターンだとそれが
+   json形式であることが明示的でない(読めばわかるだろうが)
+   ……別によいか
+
+
+- vim: fdl=20
