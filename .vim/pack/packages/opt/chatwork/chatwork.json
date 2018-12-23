@@ -1,0 +1,10 @@
+{
+   "rooms": {
+      "mychat" : "1234567",
+      "john" : "1111111",
+      "michel" : "2222222",
+      "judy" : "3333333",
+      "alex" : "4444444"
+   },
+   "token": "chatwork-api-token-123456789abcdef"
+}

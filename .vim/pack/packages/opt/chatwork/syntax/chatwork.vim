@@ -59,9 +59,11 @@ highlight link chatworkTaskStop SpecialKey
 syntax match chatworkCreate "\[dtext:chatroom_groupchat_created]"
 highlight link chatworkCreate PreProc
 
-syntax region chatworkMember start="\[dtext:chatroom_member_is]" end="\[dtext:chatroom_added]" contains=chatworkMemberPic
+syntax region chatworkMemberAdd start="\[dtext:chatroom_member_is]" end="\[dtext:chatroom_added]" contains=chatworkMemberPic
+syntax region chatworkMemberLeave start="\[dtext:chatroom_member_is]" end="\[dtext:chatroom_leaved]" contains=chatworkMemberPic
 syntax match chatworkMemberPic "\[piconname:.\{-}]"
-highlight link chatworkMember PreProc
+highlight link chatworkMemberAdd PreProc
+highlight link chatworkMemberLeave PreProc
 highlight link chatworkMemberPic String
 
 syntax match chatworkTo "\[To:.\{-}]" conceal cchar=T

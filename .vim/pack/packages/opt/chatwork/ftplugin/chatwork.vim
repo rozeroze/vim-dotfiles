@@ -9,6 +9,8 @@ if exists('b:did_ftplugin')
 endif
 let b:did_ftplugin = 1
 
+let s:cpo_save = &cpoptions
+set cpoptions&vim
 
 """ setlocal
 setlocal bufhidden=hide
@@ -19,7 +21,6 @@ setlocal noswapfile
 
 
 """ completion
-let maplocalleader = ','
 nnoremap <buffer> [chatwork] <Nop>
 nmap <buffer> <LocalLeader> [chatwork]
 imap <buffer> <LocalLeader> [chatwork]
@@ -27,6 +28,8 @@ imap <buffer> <LocalLeader> [chatwork]
 nnoremap <buffer><silent> [chatwork]t i<C-R>=ChatworkCompleteTo()<CR>
 inoremap <buffer><silent> [chatwork]t <C-R>=ChatworkCompleteTo()<CR>
 function! ChatworkCompleteTo()
+   " TODO: git管理外ファイルから読み込めるようにする
+   " let g:chatwork_completion_user = [ { 'word': '[TO:1234]', 'abbr': 'ROZEROZE' } ]
    call complete(col('.'), [
             \ { 'word': '[TO:1111]', 'abbr': 'John' },
             \ { 'word': '[TO:2222]', 'abbr': 'Michel' },
@@ -48,5 +51,7 @@ function! ChatworkCompleteTagCode()
    return ''
 endfunction
 
+let &cpoptions = s:cpo_save
+unlet s:cpo_save
 
 " vim: set ts=3 sts=3 sw=3 et tw=0 fdm=marker :

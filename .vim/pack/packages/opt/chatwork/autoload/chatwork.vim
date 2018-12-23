@@ -20,20 +20,18 @@ let s:strftime = exists('*strftime')
 let s:rooms = []
 " }}}
 " secret {{{
-let s:token = '00112233445566778899aabbccddeeff'
-let s:roomids = {}
-let s:roomids.myroom = '12345678'
-let s:roomids.thomas = '11111111'
-let s:roomids.michaela = '22222222'
-let s:roomids.john = '33333333'
-try
-   " NOTE: secret.vimを別に作成 token等の情報を定義している
-   let s:token = secret#get_chatwork_token()
-   let s:roomids = secret#get_chatwork_roomids()
-catch
-   echo 'chatwork.vim disabled'
+if !exists('g:chatwork')
+   echo 'g:chatwork is not exists.'
    finish
-endtry
+endif
+if !exists('g:chatwork.token') || g:chatwork.token == ''
+   echo 'chatwork-token is invalid. '
+   finish
+endif
+if !exists('g:chatwork.rooms')
+   echo 'chatwork-rooms is invalid'
+   finish
+endif
 " }}}
 
 
@@ -42,7 +40,7 @@ endtry
 " chatwork#check(name) 指定の宛先が存在するか判定 {{{
 function! chatwork#check(name)
    let name = tolower(a:name)
-   if !has_key(s:roomids, name)
+   if !has_key(g:chatwork.rooms, name)
       return v:false
    endif
    return v:true
@@ -51,7 +49,7 @@ endfunction
 " chatwork#getid(name) 宛先からroomidを取得 {{{
 function! chatwork#getid(name)
    let name = tolower(a:name)
-   return s:roomids[name]
+   return g:chatwork.rooms[name]
 endfunction
 " }}}
 " chatwork#open(name) フィールドを開く {{{
@@ -64,13 +62,13 @@ endfunction
 " chatwork#complete(ArgLead, CmdLine, CursorPos) 宛先のcommand-complete {{{
 function! chatwork#complete(ArgLead, CmdLine, CursorPos)
    let filter_cmd = printf('v:val =~ "^%s"', a:ArgLead)
-   return filter(keys(s:roomids), filter_cmd)
+   return filter(keys(g:chatwork.rooms), filter_cmd)
 endfunction
 " }}}
 " list
 " chatwork#list() 宛先一覧を表示 {{{
 function! chatwork#list()
-   echo keys(s:roomids)
+   echo keys(g:chatwork.rooms)
 endfunction
 " }}}
 " get
@@ -83,7 +81,7 @@ function! chatwork#get(name)
    endif
    let roomid = g:chatwork#getid(a:name)
    " get
-   let res = webapi#http#get(s:url . 'rooms/' . roomid . '/messages?force=1', {}, { 'x-ChatWorkToken': s:token })
+   let res = webapi#http#get(s:url . 'rooms/' . roomid . '/messages?force=1', {}, { 'x-ChatWorkToken': g:chatwork.token })
    let json = webapi#json#decode(res.content)
    " show messages
    call chatwork#show(a:name, json)
@@ -134,7 +132,7 @@ endfunction
 " chatwork#send(roomid, messages) メッセージを送信する {{{
 function! chatwork#send(roomid, messages)
    " send
-   let res = webapi#http#post(s:url . 'rooms/' . a:roomid . '/messages', { 'body': a:messages }, { 'x-ChatWorkToken': s:token })
+   let res = webapi#http#post(s:url . 'rooms/' . a:roomid . '/messages', { 'body': a:messages }, { 'x-ChatWorkToken': g:chatwork.token })
    let dict = webapi#json#decode(res.content)
    if has_key(dict, 'error')
       echo 'error:' . dict.error
@@ -164,7 +162,7 @@ endfunction
 " chatwork#getrooms() room情報を取得 {{{
 function! chatwork#getrooms()
    let s:rooms = []
-   let res = webapi#http#get(s:url . 'rooms', {}, { 'x-ChatWorkToken': s:token })
+   let res = webapi#http#get(s:url . 'rooms', {}, { 'x-ChatWorkToken': g:chatwork.token })
    let json = webapi#json#decode(res.content)
    let s:rooms = json
 endfunction
@@ -228,7 +226,7 @@ function! chatwork#getbyid(id)
    if string(r) == string({})
       echo 'not found'
    else
-      let res = webapi#http#get(s:url . 'rooms/' . a:id . '/messages?force=1', {}, { 'x-ChatWorkToken': s:token })
+      let res = webapi#http#get(s:url . 'rooms/' . a:id . '/messages?force=1', {}, { 'x-ChatWorkToken': g:chatwork.token })
       let json = webapi#json#decode(res.content)
       call chatwork#show('id-' . a:id , json)
    endif
