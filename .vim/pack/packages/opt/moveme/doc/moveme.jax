@@ -1,0 +1,23 @@
+*moveme.jax*     Move & Resize Vim
+
+Author: rozeroze <rosettastone1886@gmail.com>
+License: MIT
+
+==============================================================================
+
+Moveme you can move the Vim
+  move command:
+    - h move left
+    - j move down
+    - k move up
+    - l move right
+  resize command:
+    - H smallen number-of-columns
+    - J enlarge number-of-lines
+    - K smallen number-of-lines
+    - L enlarge number-of-columns
+    - < smallen columns and lines
+    - > enlarge columns and lines
+
+==============================================================================
+vim: tw=78 ts=8 ft=help norl :
