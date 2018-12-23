@@ -1,10 +1,9 @@
-" Vim plugin script
-" File: bluescreen.vim
-" Summary: blue screen of death
-" Authors: rozeroze <rosettastone1886@gmail.com>
-" License: MIT
-" Last Change: 2018 Feb 23
+""" File: bluescreen.vim
+""" Authors: rozeroze <rosettastone1886@gmail.com>
+""" License: MIT
+""" Version: 2018-09-19
 
+""" Description: blue screen of death
 
 if exists('g:loaded_bluescreen')
    finish
