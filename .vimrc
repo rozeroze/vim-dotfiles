@@ -6,12 +6,14 @@
 " }}}2
 " rules {{{2
 " Names: {{{3
-"   * varables:
+"   * variables:
 "     - let s:script_local = 'snake_case'
 "     - let b:buffer_local = 'snake_case'
 "     - let g:global_scope = 'snake_case'
 "     - let no_designation = 'snake_case'
 "     - let $ENVIRONMET_VAR = 'UPPER_SNAKE'
+"   * command:
+"     - command DefineCommand :echo 'PascalCase'
 "   * function:
 "     - function! s:script_func()
 "          echo 'snake_case'
@@ -158,7 +160,7 @@ set ignorecase
 set smartcase
 set infercase
 set nrformats=
-set formatoptions=q
+set formatoptions=roqnMj
 set winaltkeys=no
 set viminfo=
 set cryptmethod=blowfish2
@@ -254,7 +256,7 @@ endfor
 unlet spath
 " packages
 if s:enable_package
-   packadd matchit
+   silent! packadd matchit
    silent! packadd expandspace
    silent! packadd moveme
 endif
