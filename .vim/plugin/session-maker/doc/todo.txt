@@ -57,6 +57,12 @@ Example:
   :Session -delete test
 }}}
 
+bug 'quickfix' {{{
+Summary:
+  makeした時にquickfix-listを持つbufferが複数あると
+  2つ目以降のquickfix-listが破棄される
+  そもそもquickfix-list自体、1つしか持てない
+}}}
 
 " vim: set ft=vim fdm=marker :
 " vim: set ts=3 sts=3 sw=3 et :
