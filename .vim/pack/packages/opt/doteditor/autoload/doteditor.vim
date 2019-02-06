@@ -22,7 +22,7 @@ function! doteditor#open()
    endif
    execute printf('tabnew [doteditor%d]', g:doteditor.counter)
    setlocal filetype=doteditor
-   set showtabline=0 laststatus=0
+   set showtabline=0 laststatus=0 cmdheight=1
    set scrolloff=0 sidescrolloff=0
    set linespace=0
    let g:doteditor.counter += 1
@@ -74,7 +74,7 @@ endfunction
 " function! doteditor#canvas() {{{
 function! doteditor#canvas()
    let &columns = t:hrzn
-   let &lines = t:vert + 2
+   let &lines = t:vert + 1 " offset cmdheight
 endfunction
 " }}}
 " function! doteditor#slosh(char) {{{
