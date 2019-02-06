@@ -1,0 +1,70 @@
+﻿" Vim plugin script
+" File: session.vim
+" Summary: todo list  - session.vim
+" Authors: rozeroze <rosettastone1886@gmail.com>
+" License: MIT
+" Version: 2018-07-09
+
+""" TODO
+new option 'update' {{{
+Summary:
+  :Session -update
+  にてsessionの更新ができるようにする
+  :Session -loadが行われた際に、どのsessionかの情報を保持、
+  :Session -updateでそのsessionを上書きする
+INFO:
+  v:this_session という互換性のために残されている変数を便宜的に使えると思う
+Example:
+  :Session -load test
+  ...editing... " なんらかの変更
+  このとき
+  :Session -update と :Session -make test は等価
+}}}
+
+new feature 'rename' {{{
+Summary:
+  :Session -rename test1 test2
+  にてtest1という名前で保持されているsessionをtest2にrename
+  sessionの他にviminfo,quickfixなどもあれば、そちらもrename
+  rename対象をload済みの場合は、update対象sessionも対応する
+}}}
+
+rename option 'load & list' {{{
+Summary:
+  現状、loadとlistがともにlから始まるので、
+  :Session -l のlがどちらなのか判別しがたい
+  どちらかをrenameする
+Example:
+  :Session list -> show
+  :Session load -> execute
+}}}
+
+add feature 'tag' in sessions {{{
+Summary:
+  sessionを作成するとき、読込のときにtagをつける
+  gitのbranchのタグ機能に触発されて、vim-sessionでも同様の機能を
+  複数のプロジェクトに携わっていたりすると欲しい機能
+  不足しているのはmkdirを実行する部分(mkdirが必要かどうかの判定も)
+Example:
+  ProjectName: ABC
+  Issue: 123
+  :Session make projectABC/issue123
+}}}
+
+new feature 'delete' {{{
+Summary:
+  makeしたsessionを削除する機能
+  今のところ、sessionは作られるばかりで、削除する機能はない
+Example:
+  :Session -delete test
+}}}
+
+bug 'quickfix' {{{
+Summary:
+  makeした時にquickfix-listを持つbufferが複数あると
+  2つ目以降のquickfix-listが破棄される
+  そもそもquickfix-list自体、1つしか持てない
+}}}
+
+" vim: set ft=vim fdm=marker :
+" vim: set ts=3 sts=3 sw=3 et :
