@@ -6,8 +6,20 @@ if exists('g:loaded_visualsearch')
 endif
 let g:loaded_visualsearch = 1
 
-" refrence by Practical Vim TIP 86
+xnoremap * :<c-u>let [@/, v:hlsearch] = <sid>VisualSearch('*')<cr>
+xnoremap # :<c-u>let [@/, v:hlsearch] = <sid>VisualSearch('#')<cr>
 
+function! s:VisualSearch(cmd)
+   let temp = @s
+   norm! gv"sy
+   let ret = '\V' . substitute(escape(@s, a:cmd . '\'), '\n', '\\n', 'g')
+   let @s = temp
+   return [ret, v:true]
+endfunction
+
+
+finish
+" refrence by Practical Vim TIP 86
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
 

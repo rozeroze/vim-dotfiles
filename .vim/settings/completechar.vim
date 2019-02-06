@@ -6,7 +6,7 @@ if exists('g:loaded_completechar')
 endif
 let g:loaded_completechar = 1
 
-let s:chars = split('!@#$%^&*()-_=+\|~?', '\zs')
+let s:chars = split('!@#$%^&*()-_=+\|~?`', '\zs')
 let s:dict = []
 for c in s:chars
    call add(s:dict, { 'word': c })

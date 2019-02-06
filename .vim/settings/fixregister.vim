@@ -11,15 +11,11 @@ endif
 let g:loaded_fixregister = 1
 
 
-" variable default
+" variable
 let s:regist = {}
 let s:regist.filename = v:false
 let s:regist.filepath = v:true
 let s:regist.extension = v:true
-" variable extends
-if exists('g:rzrz.fixregister')
-   call extend(s:regist, g:rzrz.fixregister)
-endif
 
 
 " functions

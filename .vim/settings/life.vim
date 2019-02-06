@@ -1,6 +1,6 @@
 """ Theme: life
 """ Sumary: 生命
-""" Version: 2018-07-12
+""" Version: 2018-07-17
 
 if !has('timers')
    finish
@@ -9,6 +9,44 @@ if exists('g:loaded_life')
    finish
 endif
 let g:loaded_life = 1
+
+" TODO: バグ 裁定方式か、基準か、なにかが違う
+"       グライダーを手動で作成時に発見
+
+" let s:sample {{{
+let s:sample = {}
+let s:sample['block'] = [ '    ' ,
+                        \ ' ** ' ,
+                        \ ' ** ' ,
+                        \ '    ' ]
+let s:sample['honeycomb'] = [ '      ' ,
+                            \ '  **  ' ,
+                            \ ' *  * ' ,
+                            \ '  **  ' ,
+                            \ '      ' ]
+let s:sample['boat'] = [ '     ' ,
+                       \ ' **  ' ,
+                       \ ' * * ' ,
+                       \ '  *  ' ,
+                       \ '     ' ]
+let s:sample['ship'] = [ '     ' ,
+                       \ '  ** ' ,
+                       \ ' * * ' ,
+                       \ ' **  ' ,
+                       \ '     ' ]
+let s:sample['pond'] = [ '      ' ,
+                       \ '  **  ' ,
+                       \ ' *  * ' ,
+                       \ ' *  * ' ,
+                       \ '  **  ' ,
+                       \ '      ' ]
+let s:sample['glider'] = [ '      ' ,
+                         \ ' ***  ' ,
+                         \ ' *    ' ,
+                         \ '  *   ' ,
+                         \ '      ' ,
+                         \ '      ' ]
+" }}}
 
 let s:life = {}
 let s:life['live'] = '*'
@@ -25,6 +63,12 @@ function! s:open()
    setlocal nolist nospell nowrap
    setlocal nocursorline nocursorcolumn
    setlocal guioptions=
+   set scrolloff=0 sidescrolloff=0
+   set linespace=0
+   if exists('&charspace')
+      " kaoriya
+      set charspace=0
+   endif
 endfunction
 
 """ fieldのx軸とy軸の情報をセット
@@ -43,11 +87,11 @@ endfunction
 
 """ 空のfieldを表示、壁を設定
 function! s:fieldmake()
-   normal! ggdG
+   silent normal! ggdG
    call append(line('$'), repeat(s:life['wall'], s:life['columns']))
    call append(line('$'), repeat([s:life['wall'] . repeat(' ', s:life['columns']-2) . s:life['wall']], s:life['lines']-2))
    call append(line('$'), repeat(s:life['wall'], s:life['columns']))
-   normal! ggdd
+   silent normal! ggdd
 endfunction
 
 """ 先住民族をセット
@@ -132,9 +176,9 @@ endfunction
 
 """ fieldを上書きする
 function! s:update(lines)
-   normal! ggdG
+   silent normal! ggdG
    call append(0, a:lines)
-   normal! Gddgg
+   silent normal! Gddgg
    redraw
 endfunction
 
@@ -147,16 +191,43 @@ function! s:relive()
    call timer_pause(b:timer, 0)
 endfunction
 
+""" 時の砂時計
+function! s:pause()
+   let _info = timer_info(b:timer)
+   call filter(_info, 'v:val["id"] == ' . b:timer)
+   if _info == []
+      " error:
+   else
+      call timer_pause(b:timer, !_info[0]['paused'])
+   endif
+endfunction
+
 """ 神の手
 function! s:hand()
-   " TODO: check has(gui) && include(&mouse, 'n')
-   noremap <nowait><buffer><silent> <LeftMouse> <LeftMouse>:call <sid>handdown()<cr>
-   noremap <nowait><buffer><silent> <LeftDrag>  <LeftMouse>:call <sid>handdown()<cr>
+   if !has('gui_running')
+      return
+   endif
+   if match(&mouse, 'n') == -1
+      return
+   endif
+   noremap <nowait><buffer><silent> <LeftMouse> <LeftMouse>:call <sid>wand()<cr>
+   noremap <nowait><buffer><silent> <LeftDrag>  <LeftMouse>:call <sid>wand()<cr>
 endfunction
-function! s:handdown()
+
+""" 生命の杖
+function! s:wand()
    let c = getline('.')[col('.') - 1]
    if c == ' '
-      normal! r*
+      silent normal! r*
+      redraw
+   endif
+endfunction
+
+""" 神の雷
+function! s:thunder()
+   let c = getline('.')[col('.') - 1]
+   if c == '*'
+      silent normal! r 
       redraw
    endif
 endfunction
@@ -177,6 +248,9 @@ function! s:Life()
    " mapping
    nnoremap <nowait><buffer> q :bdelete<cr>
    nnoremap <nowait><buffer><silent> r :call <sid>relive()<cr>
+   nnoremap <nowait><buffer><silent> p :call <sid>pause()<cr>
+   nnoremap <nowait><buffer><silent> w :call <sid>wand()<cr>
+   nnoremap <nowait><buffer><silent> t :call <sid>thunder()<cr>
    " autocmd
    augroup LifeGame
       autocmd!

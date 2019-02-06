@@ -2,6 +2,8 @@
 """ Summary: Vimのアプリケーションウィンドウを動かす
 """ Version: 2018-06-20
 
+" to be package
+finish
 
 if exists('g:loaded_moveme')
    finish
