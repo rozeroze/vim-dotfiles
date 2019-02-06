@@ -1,0 +1,163 @@
+*dungeon-monster.jax*		DungeonKeeper On Vim
+
+Author: rozeroze <rosettastone1886@gmail.com>
+License: MIT
+Version: 2018-07-25
+
+						*dungeon-monster*
+dungeon.vimで登場するmonster各種について
+
+|dungeon|			当VimPluginについて
+|dungeon-brave|			登場するbraveについて
+
+==============================================================================
+CONTENTS					*dungeon-monster-contents*
+
+|dungeon-monster-all|		登場するmonsterの一覧
+|dungeon-monster-status|	monsterの初期ステータス
+|dungeon-monster-action|	monsterの行動パターン
+
+==============================================================================
+ALL						*dungeon-monster-all*
+
+dungeon.vimで登場するmonsterは下記の10種類です
+
+	bat		コウモリ
+	slime		スライム
+	goblin		ゴブリン
+	gengar		影に潜む者
+	skeleton	スケルトン
+	element		精霊
+	armor		歩く鎧
+	harpy		ハーピィ
+	fiary		妖精
+	witch		魔女
+
+==============================================================================
+STATUS						*dungeon-monster-status*
+
+各monsterの初期ステータス
+
+	'name'		'icon'	'life'	'mana'	'hate'
+	bat		^	2	2	1
+	slime		3	2	3	0
+	goblin		@	3	3	2
+	gengar		&	4	7	0
+	skeleton	!	3	3	0
+	element		8	2	5	0
+	armor		=	8	7	0
+	harpy		~	4	6	0
+	fiary		*	3	6	0
+	witch		$	4	7	0
+
+==============================================================================
+ACTION						*dungeon-monster-action*
+
+各monsterの行動パターン
+
+bat >
+   if ( 接触(敵) )
+      攻撃(ランダム)
+      if ( 稀に )
+         自身を回復
+   else
+      移動(ランダム)
+<
+
+slime >
+   if ( 接触(敵) )
+      攻撃(ランダム)
+   else
+      if ( 時々 )
+         移動(ランダム)
+         return
+      if ( 稀に )
+         自身のマナを回復
+         return
+      if ( 極稀に )
+         スキル(分裂)
+<
+
+goblin >
+   if ( 接触(仲間) )
+      if ( 接触(敵) )
+         攻撃(最もヘイトの高い敵)
+      else
+         自身のヘイトを上げる
+   else
+      移動(仲間の近くに)
+<
+
+gengar >
+   if ( 接触(*) )
+      if ( 時々 )
+         if ( 接触(敵) )
+            スキル(影操り)
+      else
+         移動(ランダム)
+   else
+      自身のヘイトを下げる
+<
+
+skeleton >
+   if ( 接触(敵) )
+      攻撃(ランダム)
+      if ( 攻撃対象が死滅 )
+         if ( 自身のマナが充足している )
+            死滅対象をskeletonとして召喚
+   else
+      移動(敵の近くに)
+<
+
+element >
+   if ( 接触(敵) )
+      移動(ワープ)
+   else
+      if ( 自身の体力が落ちている )
+         回復(自身)
+         return
+      if ( 接触(仲間) && 仲間の体力が落ちている )
+         回復(仲間)
+         return
+      if ( 時々 )
+         自身のマナを回復
+<
+
+armor >
+   if ()
+<
+function! s:action.armor() dict
+   " priority: attack
+   " move: near-enemy
+   " attack: high hate
+   " skill: none
+   call s:message.print('armor turn')
+endfunction
+
+function! s:action.harpy() dict
+   " priority: attack
+   " move: 近くの仲間のところに移動
+   " attack: high hate
+   " skill: 魅了
+   call s:message.print('harpy turn')
+endfunction
+
+function! s:action.fiary() dict
+   " priority: escape
+   " move: 時々randomに動く
+   " attack: 攻撃するか、技能をつかう
+   " skill: 対象を状態異常(混乱)にする changeling
+   call s:message.print('fiary turn')
+endfunction
+
+function! s:action.witch() dict
+   " priority: manaの状態による
+   " move: 近くに敵がいる(mana有攻撃、mana無逃げる)
+   "       敵がいない(mana有random移動、mana無移動せずmana回復)
+   " attack: manaを消費し技能を使う
+   " skill: 対象を状態異常(狂化)にする
+   call s:message.print('witch turn')
+endfunction
+
+==============================================================================
+vim: tw=78 ts=8 ft=help norl :

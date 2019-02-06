@@ -14,16 +14,16 @@ syntax clear
 syntax match dungeonWall /[+-|]/
 syntax match dungeonFloor /\./
 syntax match dungeonKeeper /#/
-syntax match dungeonMonster /[\^3\@\&\!8\=\~\*\%\$]/
+syntax match dungeonMonster /[\^3\@\&\!8\=\~\*\$]/
+syntax match dungeonGate /%/
 syntax match dungeonBrave /[FSBKLTRAWMC]/
-syntax match dungeonAttack /\//
 
 highlight default link dungeonWall String
 highlight default link dungeonFloor Normal
 highlight default link dungeonKeeper Boolean
 highlight default link dungeonMonster String
+highlight default link dungeonGate Float
 highlight default link dungeonBrave Number
-highlight default link dungeonAttack Error
 
 let b:current_syntax = 'dungeon'
 

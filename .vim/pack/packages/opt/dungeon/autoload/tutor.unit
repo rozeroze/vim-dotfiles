@@ -1,0 +1,1 @@
+{ 'icon': '@', 'type': 'monster', 'posx': 19, 'posy': 8, 'life': 10, 'mana': 10  }

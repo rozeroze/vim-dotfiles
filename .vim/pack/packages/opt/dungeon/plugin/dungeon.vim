@@ -16,8 +16,7 @@ let g:loaded_dungeon = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-command! -nargs=0 DungeonMake call dungeon#dungeon#make()
-command! -nargs=0 DungeonMakeAssert call dungeon#assert#init()
+command! -nargs=? DungeonMake :call dungeon#make(<f-args>)
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

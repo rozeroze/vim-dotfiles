@@ -1,0 +1,28 @@
+*dungeon.jax*			DungeonKeeper On Vim
+
+Author: rozeroze <rosettastone1886@gmail.com>
+License: MIT
+Version: 2018-07-25
+
+						*dungeon*
+dungeon.vim は'dungeon-keeper型'のゲームをVimで再現したものです
+
+|dungeon-monster|		登場するmonsterについて
+|dungeon-brave|			登場するbraveについて
+
+==============================================================================
+CONTENTS					*dungeon-contents*
+
+|dungeon-howtostart|		始め方
+
+
+==============================================================================
+HOWTOSTART					*dungeon-howtostart*
+
+:DungeonMake
+	始めます
+
+
+
+==============================================================================
+vim: tw=78 ts=8 ft=help norl :

@@ -715,7 +715,7 @@ function dungeon#dungeon#history.show()
    setlocal buftype=nofile
    call append(0, all)
 endfunction
-function g:Show()
+function! g:Show()
    call g:dungeon#dungeon#history.show()
 endfunction
 " }}}
