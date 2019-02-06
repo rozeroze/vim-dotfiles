@@ -18,5 +18,7 @@ abbreviate <buffer> using4; using System;
                            \using System.Collections.Generic;
                            \using System.Linq;
 
+"syntax keyword csTodo contained MEMO
+
 
 " vim: set ts=3 sts=3 sw=3 et :
