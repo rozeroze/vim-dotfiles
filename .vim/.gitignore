@@ -1,0 +1,29 @@
+# ==================================================================== #
+# Vim のプラグイン、パッケージおよびその他スクリプトにて使用する
+# 設定ファイル、環境ファイルなどは .vim/ 直下に置く
+# その時の命名規則として、 dotfile にするものとする
+#
+# 例)
+# パス: .vim/pack/dist/opt/send-spam-mail/
+# 機能: あらかじめ登録しておいたメールアドレスにスパムを送信する
+#
+# 設定ファイル:
+# .vim/.send-spam-mail
+#
+# 設定ファイル(案):
+# $HOME/.vim-send-spam-mail
+# .vim/pack/dist/opt/send-spam-mail/.config
+#
+# 場合によっては設定ファイルを dotfile にしたくない場合もある
+# その時は、 .vim/pack/dist/opt/send-spam-mail/.gitignore にて
+# mail-address.json を除外し
+# .vim/pack/dist/opt/send-spam-mail/mail-address.json にアドレスを
+# 記載していく、という構成を考えている
+# ==================================================================== #
+
+# すべての dotfile を除外する
+.*
+
+# .gitignore だけは管理する
+!.gitignore
+
