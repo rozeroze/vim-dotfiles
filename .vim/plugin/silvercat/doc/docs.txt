@@ -1,0 +1,4 @@
+# MEMO:
+コマンドラインモード時にTabキー押下などでコマンドの候補を表示している時
+timer関数によって定期的にstatulineを上書きするため、候補が見えなくなる
+autocmd CmdWinEnter,CmdWinLeaveによってtimerを一時停止できないか調査
