@@ -3,25 +3,15 @@
 " Summary: easy set guifont
 " Authors: rozeroze <rosettastone1886@gmail.com>
 " License: MIT
-" Last Change: 2018 Feb 9
+" Version: 2018-09-27
 
 
 if exists('g:loaded_chiffon')
    finish
 endif
-if !exists('g:chiffon')
-   finish
-endif
-if type(g:chiffon) != v:t_dict
-   finish
-endif
 
 let s:save_cpo = &cpo
 set cpo&vim
-
-"if exists('g:chiffon.default')
-"   autocmd GuiEnter * call chiffon#chiffon(g:chiffon.default)
-"endif
 
 command! -nargs=? Chiffon :call chiffon#chiffon(<f-args>)
 
