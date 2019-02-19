@@ -66,5 +66,11 @@ Summary:
   そもそもquickfix-list自体、1つしか持てない
 }}}
 
+add checker 'quickfix' {{{
+Summary:
+  quickfix-listが空の時でも、quickfixファイルを作成している
+  無駄なので、空の時は作成しないように変更する
+}}}
+
 " vim: set ft=vim fdm=marker :
 " vim: set ts=3 sts=3 sw=3 et :

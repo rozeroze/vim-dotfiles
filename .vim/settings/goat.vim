@@ -1,10 +1,11 @@
 """ Theme: take it easy, go to file
 """ Summary: 予め予約されたファイルを開くことができる
-""" Version: 2018-11-22
+""" Version: 2019-02-18
 
 
-" TODO: autocmd BufReadCmd $.vim :e ~/.vim
-" TODO: autocmd BufReadCmd :.vim :e ~/.vim
+" TODO: autocmd BufReadCmd *: call <sid>goat(*)
+" TODO: edit vim: -> edit $HOME/.vim
+"       edit abc: -> edit $HOME/ABC-ltd/project/abc-api
 
 if exists('g:loaded_goat')
    finish
@@ -13,29 +14,55 @@ let g:loaded_goat = 1
 
 augroup Goat
    autocmd!
-   autocmd BufReadCmd :* call <sid>goat(expand('<afile>')[1:])
-   autocmd BufReadCmd goat:* call <sid>goat(expand('<afile>')[5:])
    autocmd BufReadCmd *: call <sid>goat(expand('<afile>')[:-2])
-   autocmd BufReadCmd *:goat call <sid>goat(expand('<afile>')[:-6])
+   autocmd BufReadCmd *+ call <sid>goatadd(expand('<afile>')[:-2])
+   autocmd BufReadCmd *- call <sid>goatremove(expand('<afile>')[:-2])
 augroup END
 
-let s:gset = {}
-let s:gset['vim'] = '$HOME/.vim'
-let s:gset['vimrc'] = '$MYVIMRC'
-let s:gset['gvimrc'] = '$MYGVIMRC'
-let s:gset['home'] = '$HOME'
-"let s:gset['name'] = 'path'
+let s:list = {}
+let s:list['vim'] = '$HOME/.vim'
+let s:list['vimrc'] = '$MYVIMRC'
+let s:list['gvimrc'] = '$MYGVIMRC'
+let s:list['home'] = '$HOME'
+"let s:list['name'] = 'path'
+
+for s:key in keys(s:list)
+   lockvar s:list[s:key]
+endfor
+unlet s:key
 
 function! s:goat(name)
-   if has_key(s:gset, a:name)
-      execute "e " . s:gset[a:name]
+   echo a:name
+   if has_key(s:list, a:name)
+      execute "e " . s:list[a:name]
    else
-      if a:flg
-         normal! 
-         let s:gset[a:name] = expand('%:p')
-      else
-         echoerr printf('error: %s is not defined', a:name)
+      echoerr printf('error: %s is not defined', a:name)
+   endif
+endfunction
+
+function! s:goatadd(name)
+   if !has_key(s:list, a:name)
+      normal! 
+      let cname = expand('%:p')
+      if cname == ''
+         let cname = getcwd()
       endif
+      let s:list[a:name] = cname
+   else
+      echoerr printf('error: %s is already defined', a:name)
+   endif
+endfunction
+
+function! s:goatremove(name)
+   if has_key(s:list, a:name)
+      normal! 
+      if islocked(printf('s:list["%s"]', a:name))
+         echoerr printf('error: cannot remove %s', a:name)
+      else
+         unlet s:list[a:name]
+      endif
+   else
+      echoerr printf('error: %s is not defined', a:name)
    endif
 endfunction
 

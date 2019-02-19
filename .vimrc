@@ -156,6 +156,7 @@ set autoindent
 set smartindent
 set iminsert=0
 set imsearch=0
+set virtualedit=block
 set ignorecase
 set smartcase
 set infercase

@@ -13,7 +13,8 @@ loadされるはずだが、pluginという感じではないためsettingsと�
 
 
 # Rule of CharSet
-scriptファイルはutf-8 BOMなし
+encoding: utf-8 nobomb
+fileformat: unix <LF>
 # Rule of Name
 scriptファイルの命名規則
 ・許される文字は[a-zA-Z0-9]と記号_(underscore)のみ
@@ -85,7 +86,7 @@ visualsearch.vim
 fixregister.vim
 
 
-# ファイル詳細 2018-12-10
+# ファイル詳細 2019-02-18
 abbreviate.vim	短縮入力(after/ftplugin移行予定)
 bufferlist.vim	buffer-listからVimで開く
 chess.vim	chessができる
@@ -93,7 +94,7 @@ chessboard.vim	chessboardのみ、棋譜ならべとか
 colorschemer.vim	colorschemeの簡易作成
 colorschemer.tmp.txt	colorschemer-template
 completechar.vim	特殊文字の入力補助
-goat.vim	go to file
+goat.vim	go to file, be package!
 investor.vim	株情報をWebApiから(保留)
 linkage.vim	外部Appを叩く
 loremIpsum.vim	ダミーテキスト
