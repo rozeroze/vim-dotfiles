@@ -14,13 +14,15 @@ function! chiffon#set(name)
          endif
          if has_key(g:chiffon[a:name], 'wide')
             let &guifontwide = g:chiffon[a:name]['wide']
+         else
+            set guifontwide=
          endif
       else
          echo printf('fail: %s is not found. -chiffon.vim', a:name)
       endif
    catch /.*/
-      set guifont=
-      set guifontwide=
+      set guifont&
+      set guifontwide&
    endtry
 endfunction
 
@@ -40,8 +42,8 @@ function! chiffon#default()
       return
    endif
    if has('unix')
-      set guifont=
-      set guifontwide=
+      set guifont&
+      set guifontwide&
       return
    endif
    set guifont&
