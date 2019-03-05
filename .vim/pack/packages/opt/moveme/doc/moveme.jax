@@ -4,20 +4,45 @@ Author: rozeroze <rosettastone1886@gmail.com>
 License: MIT
 
 ==============================================================================
+Introduction
 
-Moveme you can move the Vim
-  move command:
-    - h move left
-    - j move down
-    - k move up
-    - l move right
-  resize command:
-    - H smallen number-of-columns
-    - J enlarge number-of-lines
-    - K smallen number-of-lines
-    - L enlarge number-of-columns
-    - < smallen columns and lines
-    - > enlarge columns and lines
+MoveMe はVimの移動とサイズ変更を目的としたVimプラグインです
+
+このプラグインは以下の環境を想定しています
+
+・GUI環境 (GNOME)
+  ターミナルから起動して、画面いっぱいにVimが表示される環境ではなく
+  Vimが１つのアプリケーションとしてウィンドウを持つ環境
+  正確には、 'winpos' と 'lines', 'columns' が動作するすべての環境
+・マウスポインタが動作しない
+  あるいはマウスを使いたくない、マウス嫌い...
+  WindowsUpdateしたらドライバが動かなくなった...
+
+==============================================================================
+Command
+
+:MoveMe
+  MoveMeプラグインを開始する
+
+  MoveMe実行中は以下のマッピングが展開される
+
+    key    effect
+
+     h   左に移動する
+     j   左に移動する
+     k   左に移動する
+     l   左に移動する
+
+     H   画面を横に縮小する
+     J   画面を縦に拡大する
+     K   画面を縦に縮小する
+     L   画面を横に拡大する
+
+     <   画面を縮小する
+     >   画面を拡大する
+
+==============================================================================
+Ascii
 
 ==============================================================================
 vim: tw=78 ts=8 ft=help norl :

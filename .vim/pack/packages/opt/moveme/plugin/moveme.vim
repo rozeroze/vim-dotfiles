@@ -168,6 +168,7 @@ function! s:MoveMe()
    augroup END
 endfunction
 " }}}
+nmap <nowait><unique> <Plug>MoveMe :<c-u>call <sid>MoveMe()<cr>
 command! MoveMe :call <sid>MoveMe()
 
 " vim: set ts=3 sts=3 sw=3 et :
