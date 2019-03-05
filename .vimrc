@@ -25,7 +25,8 @@
 "          echo 'same as command-name'
 "          " ex) | command Test :call <sid>Test()
 "          "     | function s:Test()
-"          "     |    echo 'this is test function'
+"          "     |    echo 'if wrapping command is exist,'
+"          "     |    echo 'function-name follow the command-name-rule'
 "          "     | endfunction
 "       endfunction
 " SetOptions: {{{3
@@ -69,9 +70,17 @@
 "     use lower case
 "        bad-case => nnoremap <Space>s :call <SID>Save('%')<CR>
 "       good-case => nnoremap <space>s :call <sid>Save('%')<cr>
+"   when script coding, almost use single-quotes
+"     :let hello = 'Hello World!'
+"   when coding key-codes, use double-quotes
+"     :let leader = ' '        " it's a little hard to make understand
+"     :let leader = "\<space>" " it's a explicit!
+"   there are some case include quotes
+"     :echo ''
+"     :echo ""
 " Lines: {{{3
 "   coding vim-script
-"     make new line as much as possible
+"   * make new line as much as possible
 "        bad-case => if status | call something() | endif
 "       good-case => if status
 "                       call something()
@@ -80,10 +89,10 @@
 "       good-case => for item in list
 "                       call something(item)
 "                    endfor
-"     also is it necessary to short-liner, you can it
+"   * also is it necessary to short-liner, you can it
 "                 => for item in list
 "                       call something(item) | endfor
-"     case of what a similar sentence was continued, you can one-liner
+"   * case of what a similar sentence was continued, you can one-liner
 "                 => if flag['a'] | call valid(flag, 'a') | endif
 "                    if flag['b'] | call valid(flag, 'b') | endif
 "
@@ -119,10 +128,10 @@ if !exists('g:user')
 endif
 if !exists('g:date')
    let g:date = {}
-   function g:date.today()
+   function! g:date.today()
       return strftime('%Y%m%d')
    endfunction
-   function g:date.now()
+   function! g:date.now()
       return strftime('%Y/%m/%d %H:%M')
    endfunction
 endif
@@ -177,6 +186,7 @@ set noautoread
 set maxmem=2000000
 set maxmempattern=1000
 set maxmemtot=2000000
+set tabpagemax=100
 set visualbell
 set t_vb=
 set noerrorbells
@@ -196,10 +206,15 @@ nnoremap <leader>5 <s-%>
 nnoremap <leader>; :
 " searches {{{2
 nnoremap <silent> // :<c-u>let v:hlsearch = !v:hlsearch<cr>
-nnoremap <silent> * :let [@/, v:hlsearch] = [printf('\<%s\>', expand('<cword>')), v:true]<cr>
-nnoremap <silent> # :let [@/, v:hlsearch] = [printf('\<%s\>', expand('<cword>')), v:true]<cr>
-nnoremap <silent> g* :let [@/, v:hlsearch] = [expand('<cword>'), v:true]<cr>
-nnoremap <silent> g# :let [@/, v:hlsearch] = [expand('<cword>'), v:true]<cr>
+nnoremap <silent> *  :<c-u>let [@/, v:hlsearch] = [printf('\<%s\>', expand('<cword>')), v:true]<cr>
+nnoremap <silent> #  :<c-u>let [@/, v:hlsearch] = [printf('\<%s\>', expand('<cword>')), v:true]<cr>
+nnoremap <silent> g* :<c-u>let [@/, v:hlsearch] = [expand('<cword>'), v:true]<cr>
+nnoremap <silent> g# :<c-u>let [@/, v:hlsearch] = [expand('<cword>'), v:true]<cr>
+" rendering {{{2
+nnoremap <silent> <left>  :normal! zh<cr>
+nnoremap <silent> <down>  <c-e>
+nnoremap <silent> <up>    <c-y>
+nnoremap <silent> <right> :normal! zl<cr>
 " }}}1
 
 " TODO: divide
@@ -244,8 +259,8 @@ let g:chiffon.anz = { 'font': 'あんずもじ等幅:h12:cSHIFTJIS:qDRAFT' }
 let g:chiffon.misaki = { 'font': '美咲ゴシック:h12:cSHIFTJIS:qDRAFT' }
 let g:chiffon.myrica = { 'font': 'MyricaM_M:h12:b:cSHIFTJIS:qDRAFT' }
 " chatwork
-if filereadable(expand('$HOME/.vim/pack/packages/opt/chatwork/chatwork.json'))
-   let g:chatwork = json_decode(join(readfile(expand('$HOME/.vim/pack/packages/opt/chatwork/chatwork.json'))))
+if filereadable(expand('$HOME/.vim/.chatwork'))
+   let g:chatwork = json_decode(join(readfile(expand('$HOME/.vim/.chatwork'))))
 endif
 " load {{{2
 " settings
