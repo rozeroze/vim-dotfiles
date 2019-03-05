@@ -12,6 +12,7 @@ let g:colors_name = "frozendaiquiri"
 hi CursorLine                  guibg=#2d2d2d
 hi ColorColumn                 guibg=#2d2d2d
 hi CursorColumn                guibg=#2d2d2d
+hi Directory     guifg=#6f9bc7
 hi MatchParen    guifg=#d0ffc0 guibg=#2f2f2f gui=bold
 hi Pmenu         guifg=#f0f088 guibg=#444444
 hi PmenuSel      guifg=#f0f0a0 guibg=#666688 gui=bold
