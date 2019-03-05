@@ -2,10 +2,9 @@
 
 this is my vim-dotfiles
 
-# readme
+# README
 
-**.vimrc** と **.gvimrc** をアップロード
+現在使っているメイン環境の、 **.vim** 以下の各種script群をアップロード
 
-**.vim** の下の各script群は未アップロード
+ただし、今後使用する予定のない plugin/package および settings 下のvimscriptを除く
 
-おそらく現状は、このままでは動作しないはず
