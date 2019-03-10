@@ -39,6 +39,22 @@ function! session#set(args) " {{{1
          endif
       endif
    catch /.*/
+      echoerr "error: setup failed."
+   endtry
+endfunction
+
+function! session#list(args) " {{{1
+   try
+      if len(a:args) == 0
+         " show all
+         let list = <sid>list_get_all()
+         for item in list
+            echo item
+         endfor
+      else
+         " filtering regular-expression
+      endif
+   catch /.*/
       echoerr "error: show session-list faild. "
    endtry
 endfunction
