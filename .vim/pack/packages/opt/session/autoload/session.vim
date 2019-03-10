@@ -23,16 +23,23 @@ function! session#session(cmd, ...) " {{{1
 endfunction
 
 function! session#set(args) " {{{1
-   " :Session set path=~/.vim/.session/
+   " :Session set -> start wizard mode
+   "   or
+   " :Session set ~/.vim/.session-config
+   " :Session set {'path':'$HOME/','subdir':1,'override':1}
    try
-      for l:arg in a:000
-         let [ optname, value ] = split(l:arg, '=')
-         let s:session[optname] = value
-      endfor
-   catch /^Vim\%((\a\+)\)\=:68\[78\]/
-      echoerr printf("error: argument invalid.")
+      if len(a:args) == 0
+         call <sid>set_wizard()
+      else
+         let str = join(a:args, "\n")
+         if str[0] == "{"
+            call <sid>set_from_stream(str)
+         else
+            call <sid>set_from_file(str)
+         endif
+      endif
    catch /.*/
-      echoerr printf("error: setup failed.")
+      echoerr "error: show session-list faild. "
    endtry
 endfunction
 
