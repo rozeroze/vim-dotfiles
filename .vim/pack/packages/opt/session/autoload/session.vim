@@ -96,12 +96,36 @@ endfunction
 
 " functions script-local
 function s:set_wizard() " {{{1
+   let tmp = deepcopy(s:session)
+   for key in keys(tmp)
+      let val = input(key . ': ', tmp[key])
+      if val != ""
+         let tmp[key] = val
+      endif
+   endfor
+   call extend(s:session, tmp, "force")
 endfunction
 
 function s:set_from_stream(stream) " {{{1
+   let tmp = eval(a:stream)
+   if type(tmp) != v:t_dict
+      echoerr "error: argument invalid."
+      return
+   endif
+   call extend(s:session, tmp, "force")
 endfunction
 
 function s:set_from_file(path) " {{{1
+   if !filereadable(a:path)
+      echoerr "error: argument invalid."
+      return
+   endif
+   let tmp = eval(join(readfile(a:path), "\n"))
+   if type(tmp) != v:t_dict
+      echoerr "error: argument invalid."
+      return
+   endif
+   call extend(s:session, tmp, "force")
 endfunction
 function s:list_get_all() " {{{1
 endfunction
