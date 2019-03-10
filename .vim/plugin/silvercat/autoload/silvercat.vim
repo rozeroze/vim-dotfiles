@@ -1,4 +1,4 @@
-﻿" vim plugin script
+" vim plugin script
 " File: silvercat.vim
 " Summary: Make ruler warm and fuzzy
 " Authors: rozeroze <rosettastone1886@gmail.com>
