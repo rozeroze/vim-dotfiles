@@ -6,13 +6,15 @@
 " Version: 2019-01-24
 
 
+" variable
 let s:session = {
               \   'path': '$HOME/',
               \   'subdir': v:false,
               \   'override': v:false
               \ }
 
-function! session#session(cmd, ...)
+" functions autoloads
+function! session#session(cmd, ...) " {{{1
    try
       call session#{a:cmd}(a:000)
    catch /^Vim\%((\a\+)\)\=:E117/
@@ -20,7 +22,7 @@ function! session#session(cmd, ...)
    endtry
 endfunction
 
-function! session#set(...)
+function! session#set(args) " {{{1
    " :Session set path=~/.vim/.session/
    try
       for l:arg in a:000
@@ -34,7 +36,7 @@ function! session#set(...)
    endtry
 endfunction
 
-function! session#make(...)
+function! session#make(args) " {{{1
    try
       let name = ( a:0 != 0 ? a:1 : 'session' . localtime() )
       if match(name, '/') != -1 || session#mkdir(name)
@@ -47,7 +49,7 @@ function! session#make(...)
    endtry
 endfunction
 
-function! session#mkdir(...)
+function! session#mkdir(args) " {{{1
    try
       "call mkdir(s:session.path . matchstr(name, '.*\ze/.*$'), 'p')
       if !s:session.subdir
@@ -61,14 +63,16 @@ function! session#mkdir(...)
    endtry
 endfunction
 
-function! session#load(...)
+function! session#load(args) " {{{1
    try
    catch /.*/
    endtry
 endfunction
 
+" }}}1
 
-finish
+finish " {{{1
+
 
 function! session#session(...)
    " smoke call, this is short cut
