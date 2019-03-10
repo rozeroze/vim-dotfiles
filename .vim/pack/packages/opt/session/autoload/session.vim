@@ -128,6 +128,8 @@ function s:set_from_file(path) " {{{1
    call extend(s:session, tmp, "force")
 endfunction
 function s:list_get_all() " {{{1
+   " TODO: test
+   return ['session', 'session.quickfix', 'session.winpos']
 endfunction
 
 " }}}1
