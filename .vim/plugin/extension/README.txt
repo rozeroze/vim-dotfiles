@@ -1,4 +1,4 @@
-﻿# README
+# README
 
 ### Summary
 vimscriptが用意していないデータ型などを拡張する

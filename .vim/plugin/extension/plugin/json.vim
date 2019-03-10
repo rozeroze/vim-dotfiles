@@ -1,4 +1,4 @@
-﻿" Vim plugin script
+" Vim plugin script
 " Summary: json read/write/convert
 " Authors: rozeroze <rosettastone1886@gmail.com>
 " Version: 2018-08-28
