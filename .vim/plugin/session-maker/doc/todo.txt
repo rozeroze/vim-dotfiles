@@ -1,4 +1,4 @@
-﻿" Vim plugin script
+" Vim plugin script
 " File: session.vim
 " Summary: todo list  - session.vim
 " Authors: rozeroze <rosettastone1886@gmail.com>
