@@ -1,4 +1,4 @@
-﻿""" vimscript run soon
+""" vimscript run soon
 
 
 if exists('g:loaded_runsoon')

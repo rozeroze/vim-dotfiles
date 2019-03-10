@@ -1,4 +1,4 @@
-﻿""" search extend within visual-mode
+""" search extend within visual-mode
 
 
 if exists('g:loaded_visualsearch')
