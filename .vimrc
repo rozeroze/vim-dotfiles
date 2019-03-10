@@ -243,6 +243,7 @@ let g:loaded_fixregister = 1
 " variables {{{2
 " moveme
 let g:moveme = {}
+let g:moveme.points = 10
 let g:moveme.per_line = 1
 let g:moveme.per_column = 2
 let g:moveme.ascii_enable = v:true
