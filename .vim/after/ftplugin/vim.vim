@@ -1,4 +1,4 @@
-﻿""" Vim Filetype Plugin
+""" Vim Filetype Plugin
 " Language: Vim
 " Summary: extend *.vim file config
 " Version: 2018-10-01
