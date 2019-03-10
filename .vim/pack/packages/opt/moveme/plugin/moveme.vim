@@ -1,6 +1,6 @@
 """ File: moveme.vim
 """ Author: rozeroze <rosettastone1886@gmail.com>
-""" Version: 2018-08-07
+""" Version: 2019-03-10
 
 """ Description: Move Vim-application-window
 
@@ -17,6 +17,7 @@ let s:default.per_line = 1
 let s:default.per_column = 2
 let s:default.ascii_enable = v:false
 let s:default.ascii_file = ''
+lockvar! s:default
 " }}}
 
 """ Move & Resize

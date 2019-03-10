@@ -215,6 +215,8 @@ nnoremap <silent> <left>  :normal! zh<cr>
 nnoremap <silent> <down>  <c-e>
 nnoremap <silent> <up>    <c-y>
 nnoremap <silent> <right> :normal! zl<cr>
+" plugin-mapper <plug>
+nmap <nowait><unique> <leader>m <plug>MoveMe
 " }}}1
 
 " TODO: divide
