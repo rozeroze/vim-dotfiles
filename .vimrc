@@ -13,7 +13,7 @@
 "     - let no_designation = 'snake_case'
 "     - let $ENVIRONMET_VAR = 'UPPER_SNAKE'
 "   * command:
-"     - command DefineCommand :echo 'PascalCase'
+"     - command! DefineCommand :echo 'PascalCase'
 "   * function:
 "     - function! s:script_func()
 "          echo 'snake_case'
