@@ -12,6 +12,7 @@ let g:loaded_moveme = 1
 """ Variable
 " let s:default = {} {{{
 let s:default = {}
+let s:default.points = 10
 let s:default.per_line = 1
 let s:default.per_column = 2
 let s:default.ascii_enable = v:false
@@ -22,25 +23,25 @@ let s:default.ascii_file = ''
 " function! s:Move_[hjkl]() {{{
 function! s:Move_h()
    let [x, y] = [getwinposx(), getwinposy()]
-   let x -= 10
+   let x -= g:moveme.points
    call execute(join(['winpos', x, y]))
    normal! gg
 endfunction
 function! s:Move_j()
    let [x, y] = [getwinposx(), getwinposy()]
-   let y += 10
+   let y += g:moveme.points
    call execute(join(['winpos', x, y]))
    normal! gg
 endfunction
 function! s:Move_k()
    let [x, y] = [getwinposx(), getwinposy()]
-   let y -= 10
+   let y -= g:moveme.points
    call execute(join(['winpos', x, y]))
    normal! gg
 endfunction
 function! s:Move_l()
    let [x, y] = [getwinposx(), getwinposy()]
-   let x += 10
+   let x += g:moveme.points
    call execute(join(['winpos', x, y]))
    normal! gg
 endfunction
@@ -89,6 +90,9 @@ endfunction
 " function! s:Check() {{{
 function! s:Check()
    " 設定値が存在するかと、各設定値のデータ型が正しいか
+   if !has_key(g:moveme, 'points') || type(g:moveme.points) != v:t_number
+      return v:false
+   endif
    if !has_key(g:moveme, 'per_line') || type(g:moveme.per_line) != v:t_number
       return v:false
    endif
