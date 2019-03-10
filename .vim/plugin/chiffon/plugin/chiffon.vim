@@ -1,4 +1,4 @@
-﻿" Vim plugin script
+" Vim plugin script
 " File: chiffon.vim
 " Summary: easy set guifont
 " Authors: rozeroze <rosettastone1886@gmail.com>
