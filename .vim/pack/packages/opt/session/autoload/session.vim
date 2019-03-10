@@ -94,6 +94,20 @@ endfunction
 
 " }}}1
 
+" functions script-local
+function s:set_wizard() " {{{1
+endfunction
+
+function s:set_from_stream(stream) " {{{1
+endfunction
+
+function s:set_from_file(path) " {{{1
+endfunction
+function s:list_get_all() " {{{1
+endfunction
+
+" }}}1
+
 finish " {{{1
 
 
