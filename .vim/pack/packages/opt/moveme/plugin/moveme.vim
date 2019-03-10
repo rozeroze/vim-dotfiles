@@ -13,8 +13,8 @@ let g:loaded_moveme = 1
 " let s:default = {} {{{
 let s:default = {}
 let s:default.points = 10
-let s:default.per_line = 1
-let s:default.per_column = 2
+let s:default.lines = 1
+let s:default.columns = 2
 let s:default.ascii_enable = v:false
 let s:default.ascii_file = ''
 lockvar! s:default
@@ -49,26 +49,26 @@ endfunction
 " }}}
 " function! s:Size_[HJKL]() {{{
 function! s:Size_H()
-   let &columns -= g:moveme.per_column
+   let &columns -= g:moveme.columns
 endfunction
 function! s:Size_J()
-   let &lines += g:moveme.per_line
+   let &lines += g:moveme.lines
 endfunction
 function! s:Size_K()
-   let &lines -= g:moveme.per_line
+   let &lines -= g:moveme.lines
 endfunction
 function! s:Size_L()
-   let &columns += g:moveme.per_column
+   let &columns += g:moveme.columns
 endfunction
 " }}}
 " function! s:Size_(Big|Small)() {{{
 function! s:Size_Big()
-   let &lines += g:moveme.per_line
-   let &columns += g:moveme.per_column
+   let &lines += g:moveme.lines
+   let &columns += g:moveme.columns
 endfunction
 function! s:Size_Small()
-   let &lines -= g:moveme.per_line
-   let &columns -= g:moveme.per_column
+   let &lines -= g:moveme.lines
+   let &columns -= g:moveme.columns
 endfunction
 " }}}
 
@@ -94,10 +94,10 @@ function! s:Check()
    if !has_key(g:moveme, 'points') || type(g:moveme.points) != v:t_number
       return v:false
    endif
-   if !has_key(g:moveme, 'per_line') || type(g:moveme.per_line) != v:t_number
+   if !has_key(g:moveme, 'lines') || type(g:moveme.lines) != v:t_number
       return v:false
    endif
-   if !has_key(g:moveme, 'per_column') || type(g:moveme.per_column) != v:t_number
+   if !has_key(g:moveme, 'columns') || type(g:moveme.columns) != v:t_number
       return v:false
    endif
    if !has_key(g:moveme, 'ascii_enable') || type(g:moveme.ascii_enable) != v:t_bool

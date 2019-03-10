@@ -246,8 +246,8 @@ let g:loaded_fixregister = 1
 " moveme
 let g:moveme = {}
 let g:moveme.points = 10
-let g:moveme.per_line = 1
-let g:moveme.per_column = 2
+let g:moveme.lines = 1
+let g:moveme.columns = 2
 let g:moveme.ascii_enable = v:true
 let g:moveme.ascii_file = expand('$HOME/.vim/pack/packages/opt/moveme/plugin/moveme.ascii.txt')
 " session
