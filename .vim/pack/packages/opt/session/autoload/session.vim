@@ -47,7 +47,7 @@ function! session#list(args) " {{{1
    try
       if len(a:args) == 0
          " show all
-         let list = <sid>list_get_all()
+         let list = <sid>get_all_files()
          for item in list
             echo item
          endfor
@@ -127,9 +127,13 @@ function s:set_from_file(path) " {{{1
    endif
    call extend(s:session, tmp, "force")
 endfunction
-function s:list_get_all() " {{{1
-   " TODO: test
-   return ['session', 'session.quickfix', 'session.winpos']
+function s:get_all_files() " {{{1
+   let path = s:session['path']
+   if path[len(path) - 1] != '/'
+      let path .= '/'
+   endif
+   let list = glob(path . '*', v:false, v:true)
+   return list
 endfunction
 
 " }}}1
