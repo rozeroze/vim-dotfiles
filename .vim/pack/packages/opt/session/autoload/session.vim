@@ -95,6 +95,13 @@ endfunction
 " }}}1
 
 " functions script-local
+function s:session_object(name, ...) " {{{1
+   let obj = {}
+   let obj['name'] = a:name
+   let obj['quickfix'] = ( a:0 >= 1 ) ? a:1 : v:false
+   let obj['winpos']   = ( a:0 >= 2 ) ? a:2 : v:false
+   return obj
+endfunction
 function s:set_wizard() " {{{1
    let tmp = deepcopy(s:session)
    for key in keys(tmp)
@@ -134,6 +141,9 @@ function s:get_all_files() " {{{1
    endif
    let list = glob(path . '*', v:false, v:true)
    return list
+endfunction
+function s:get_session_list() " {{{1
+   let files = <sid>get_all_files()
 endfunction
 
 " }}}1
