@@ -1,9 +1,9 @@
 " file: after/plugin/map.vim
-" version: 2019-03-10
+" version: 2019-03-13
 
 
 let s:urls = {
-           \   'tenki': 'http://www.tenki.jp/forecast/5/26/5110/23100.html',
+           \   'tenki': 'http://www.tenki.jp/forecast/5/26/5110/23100/3hours.html',
            \   'calendar': 'http://www.benri.com/calendar/'
            \ }
 command! -nargs=1 -complete=customlist,<sid>urlmaps OpenBrowserEx :call <sid>OpenBrowserEx(<f-args>)
