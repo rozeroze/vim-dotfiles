@@ -3,7 +3,7 @@
 " Summary: session manager
 " Authors: rozeroze <rosettastone1886@gmail.com>
 " License: MIT
-" Version: 2019-01-24
+" Version: 2019-03-13
 
 
 " variable
@@ -143,6 +143,9 @@ function s:get_all_files() " {{{1
    return list
 endfunction
 function s:get_session_list() " {{{1
+   " make it session-object list
+   " ex. [ 'session', 'session.quickfix', 'session.winpos' ]
+   "  -> [ { 'name': 'session', 'quickfix': 1, 'winpos': 1 } ]
    let files = <sid>get_all_files()
 endfunction
 
