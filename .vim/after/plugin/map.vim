@@ -62,8 +62,6 @@ function! s:TechCrunchArticle(url)
    let article = dom.find('article')
    let text = article.find('div', { 'class': 'article-entry text' })
    call append(0, title)
-   "call append('$', text.value())
-   "call append('$', split(text.value()))
    call append('$', split(text.value(), '\n'))
 endfunction
 
