@@ -83,7 +83,7 @@ let g:rzrz.test = { 設定値 }
  -> それが package/setset だったが、開発が止まっている
 
 
-# Git (under control) 2019-03-07
+# Git (under control) 2019-03-16
 completechar.vim        -> completion.vim に M&A (with input.vim)
 goat.vim
 moveme.vim              -> package化 settings/movemeは不使用
@@ -93,6 +93,9 @@ runsoon.vim
 visualization.vim
 visualsearch.vim
 fixregister.vim         -> 不使用
+visualplus.vim          -> 追加 2019-03-16
+chilimarker.vim         -> 追加 2019-03-16
+completion.vim          -> 追加 2019-03-16
 
 
 # ファイル詳細 2019-02-18
