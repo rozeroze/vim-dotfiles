@@ -3,7 +3,7 @@
 " Summary: todo list  - session.vim
 " Authors: rozeroze <rosettastone1886@gmail.com>
 " License: MIT
-" Version: 2018-07-09
+" Version: 2019-03-13
 
 """ TODO
 new option 'update' {{{
@@ -70,6 +70,14 @@ add checker 'quickfix' {{{
 Summary:
   quickfix-listが空の時でも、quickfixファイルを作成している
   無駄なので、空の時は作成しないように変更する
+}}}
+
+change name 'session' {{{
+Summary:
+  session-fileに拡張子 .session をつけるよう変更する
+Example:
+  :Session make test
+  -> makefile 'test.session' [ 'test.quickfix' ] [ 'test.winpos' ]
 }}}
 
 " vim: set ft=vim fdm=marker :
