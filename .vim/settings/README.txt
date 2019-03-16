@@ -10,11 +10,14 @@ plugin形式にするほどではないscriptや、map等の些少な設定を�
 放り込んでいる
 ディレクトリ名をsettingsではなくpluginにすれば.vimrcで明示せずとも
 loadされるはずだが、pluginという感じではないためsettingsという名前にした
+ -> settingsという名前もどうかと思うので、そのうち変更する
 
 
 # Rule of CharSet
 encoding: utf-8 nobomb
 fileformat: unix <LF>
+
+
 # Rule of Name
 scriptファイルの命名規則
 ・許される文字は[a-zA-Z0-9]と記号_(underscore)のみ
@@ -28,6 +31,8 @@ scriptファイルの命名規則
   test_something.vim	可、あまりよくないが、許される名前
   intro-schedule.vim	-(ハイフン)があり、よくない名前
   loremIpsum.vim	大文字が含まれており、よくない名前
+
+
 # Rule of Error
 error-messageの規則について
 特に規則を設けたつもりはないが、いつの間にか定着していたので、下記に準する
@@ -45,7 +50,7 @@ script例) test.vimにてerrorが発生した場合
 # Headers
 各scriptファイルのヘッダ部分にファイル情報を記載する
 Author(Maintainer)に rozeroze <rosettastone1886@gmail.com> を記載
-Versionは日付とすし、1.0.0のようなVersion管理方式は使わない
+Versionは日付とし、1.0.0のようなVersion管理方式は使わない
 VersionとDescriptionの間に空行が入ってもいい
 例)
 """ File: scarborough.vim
@@ -54,7 +59,7 @@ VersionとDescriptionの間に空行が入ってもいい
 """ Description: Are you going to Scarborough Fair?
 
 
-# Variable
+# Variables
 global空間を汚染しすぎないようにする
 let g:rzrz = {}
 をsource settings/*する前に定義する
@@ -67,23 +72,27 @@ let g:rzrz.test = { 設定値 }
 
 # TODO
 ・passwordなどの非公開情報のみ渡すようにし、他はHARD-CODING
+  -> passwordなどの情報が必要になるなら、packageに作る
 ・settings下のscriptは、環境ごとの設定（環境変数を直書き予定）
 ・rule-of-errorのerrorとfailについて、いい加減に使い分けているのを正す
 ・各script毎のTODOなどをどう管理するか考える
   scriptファイルに直接書き込み、foldで折りたたむなど言語道断
 ・いい加減 README.txt を README.md にrenameしておく
+・loaded_scriptが存在するかでロードするか判定しているが、邪魔
+ -> Setsコマンドを作成し、:Sets <name> で該当のscriptをロードする
+ -> それが package/setset だったが、開発が止まっている
 
 
-# Git (under control)
-completechar.vim
+# Git (under control) 2019-03-07
+completechar.vim        -> completion.vim に M&A (with input.vim)
 goat.vim
-moveme.vim
-quickfixdo.vim
+moveme.vim              -> package化 settings/movemeは不使用
+quickfixdo.vim          -> 不使用
 recordjourney.vim
 runsoon.vim
 visualization.vim
 visualsearch.vim
-fixregister.vim
+fixregister.vim         -> 不使用
 
 
 # ファイル詳細 2019-02-18
