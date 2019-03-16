@@ -72,6 +72,9 @@ function! session#make(args) " {{{1
    endtry
 endfunction
 
+function! session#update(args) " {{{1
+endfunction
+
 function! session#mkdir(args) " {{{1
    try
       "call mkdir(s:session.path . matchstr(name, '.*\ze/.*$'), 'p')
@@ -90,6 +93,12 @@ function! session#load(args) " {{{1
    try
    catch /.*/
    endtry
+endfunction
+
+function! session#rename(args) " {{{1
+endfunction
+
+function! session#delete(args) " {{{1
 endfunction
 
 " }}}1
@@ -147,6 +156,10 @@ function s:get_session_list() " {{{1
    " ex. [ 'session', 'session.quickfix', 'session.winpos' ]
    "  -> [ { 'name': 'session', 'quickfix': 1, 'winpos': 1 } ]
    let files = <sid>get_all_files()
+endfunction
+
+function s:mkdir(path) " {{{1
+   " change session#mkdir -> s:mkdir
 endfunction
 
 " }}}1
