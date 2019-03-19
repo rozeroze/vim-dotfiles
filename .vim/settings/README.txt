@@ -81,18 +81,7 @@ let g:rzrz.test = { 設定値 }
 ・loaded_scriptが存在するかでロードするか判定しているが、邪魔
  -> Setsコマンドを作成し、:Sets <name> で該当のscriptをロードする
  -> それが package/setset だったが、開発が止まっている
-
-
-# Git (under control) 2019-03-16
-goat.vim
-quickfixdo.vim          -> 不使用
-recordjourney.vim
-runsoon.vim
-visualization.vim
-visualsearch.vim
-visualplus.vim          -> 追加 2019-03-16
-chilimarker.vim         -> 追加 2019-03-16
-completion.vim          -> 追加 2019-03-16
+ -> もうそれいらん、こうする→ :source $HOME/.vim/settings/transfer.vim
 
 
 # ファイル詳細 2019-03-19

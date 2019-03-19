@@ -227,18 +227,14 @@ let g:loaded_investor = 1
 let g:loaded_chess = 1
 let g:loaded_chessboard = 1
 let g:loaded_quickfixdo = 1
-"let g:loaded_rolling_color = 1
 let g:loaded_rozeonline = 1
 let g:loaded_dotgraph = 1
 let g:loaded_keylogger = 1
 let g:loaded_mastercancel = 1
 let g:loaded_lazystep = 1
 let g:loaded_slum = 1
-"let g:loaded_writeorders = 1
 let g:loaded_colorschemer = 1
 let g:loaded_ruler = 1
-"let g:loaded_life = 1
-"let g:loaded_vimdb = 1
 let g:loaded_input = 1
 " variables {{{2
 " moveme
