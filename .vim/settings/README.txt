@@ -85,7 +85,6 @@ let g:rzrz.test = { 設定値 }
 
 # Git (under control) 2019-03-16
 goat.vim
-moveme.vim              -> package化 settings/movemeは不使用
 quickfixdo.vim          -> 不使用
 recordjourney.vim
 runsoon.vim
@@ -109,8 +108,6 @@ linkage.vim	外部Appを叩く
 loremIpsum.vim	ダミーテキスト
 lunatic-insert.vim	insertmodeでのお遊び機能
 map.vim	基本的なmapping
-moveme.ascii.txt	moveme起動中のAsciiArt
-moveme.vim	VimのAppWindowを移動・サイズ変更
 netrw.conf.vim	Netrwの追加設定
 quickfixdo.vim	argdoみたいな感じでquickfixも
 rolling-color.vim	colorschemeが順番に(お遊び)
