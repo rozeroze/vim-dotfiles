@@ -193,8 +193,8 @@ set noerrorbells
 " }}}1
 
 " mappings {{{1
-" normal-mode <leader> {{{2
 let mapleader = "\<space>"
+" normal-mode <leader> {{{2
 nnoremap <leader>w :<c-u>update<cr>
 nnoremap <leader><leader>w :<c-u>write!<cr>
 nnoremap <leader><leader><leader>w :<c-u>set buftype& <bar> w<cr>
@@ -215,13 +215,47 @@ nnoremap <silent> <left>  :normal! zh<cr>
 nnoremap <silent> <down>  <c-e>
 nnoremap <silent> <up>    <c-y>
 nnoremap <silent> <right> :normal! zl<cr>
-" plugin-mapper <plug>
+" plugin-mapper <plug> {{{2
 nmap <nowait><unique> <leader>m <plug>MoveMe
 " }}}1
 
-" TODO: divide
-" plugin and package {{{1
-" enable/disable {{{2
+" plugins {{{1
+" chiffon {{{2
+let g:chiffon = {}
+let g:chiffon.default = { 'font': 'あんずもじ等幅:h12:cSHIFTJIS:qDRAFT' }
+let g:chiffon.win = { 'font': 'Consolas:h12:b', 'wide': 'HGｺﾞｼｯｸE:h12' }
+let g:chiffon.mac = { 'font': 'Osaka－等幅:h12' }
+let g:chiffon.anz = { 'font': 'あんずもじ等幅:h12:cSHIFTJIS:qDRAFT' }
+let g:chiffon.misaki = { 'font': '美咲ゴシック:h12:cSHIFTJIS:qDRAFT' }
+let g:chiffon.myrica = { 'font': 'MyricaM_M:h12:b:cSHIFTJIS:qDRAFT' }
+" }}}1
+
+if s:enable_package
+   " packages {{{1
+   " matchit {{{2
+   silent! packadd matchit
+   " expandspace {{{2
+   silent! packadd expandspace
+   " moveme {{{2
+   let g:moveme = {}
+   let g:moveme.points = 10
+   let g:moveme.lines = 1
+   let g:moveme.columns = 2
+   let g:moveme.ascii_enable = v:true
+   let g:moveme.ascii_file = expand('$HOME/.vim/pack/packages/opt/moveme/plugin/moveme.ascii.txt')
+   silent! packadd moveme
+   " session {{{2
+   let g:session = {}
+   let g:session.quickfix = v:true
+   " chatwork {{{2
+   if filereadable(expand('$HOME/.vim/.chatwork'))
+      let g:chatwork = json_decode(join(readfile(expand('$HOME/.vim/.chatwork'))))
+   endif
+   " }}}1
+endif
+
+" settings {{{1
+" preset-load {{{2
 let g:loaded_intro_schedule = 1
 let g:loaded_investor = 1
 let g:loaded_chess = 1
@@ -236,43 +270,13 @@ let g:loaded_slum = 1
 let g:loaded_colorschemer = 1
 let g:loaded_ruler = 1
 let g:loaded_input = 1
-" variables {{{2
-" moveme
-let g:moveme = {}
-let g:moveme.points = 10
-let g:moveme.lines = 1
-let g:moveme.columns = 2
-let g:moveme.ascii_enable = v:true
-let g:moveme.ascii_file = expand('$HOME/.vim/pack/packages/opt/moveme/plugin/moveme.ascii.txt')
-" session
-let g:session = {}
-let g:session.quickfix = v:true
-" chiffon
-let g:chiffon = {}
-let g:chiffon.default = { 'font': 'あんずもじ等幅:h12:cSHIFTJIS:qDRAFT' }
-let g:chiffon.win = { 'font': 'Consolas:h12:b', 'wide': 'HGｺﾞｼｯｸE:h12' }
-let g:chiffon.mac = { 'font': 'Osaka－等幅:h12' }
-let g:chiffon.anz = { 'font': 'あんずもじ等幅:h12:cSHIFTJIS:qDRAFT' }
-let g:chiffon.misaki = { 'font': '美咲ゴシック:h12:cSHIFTJIS:qDRAFT' }
-let g:chiffon.myrica = { 'font': 'MyricaM_M:h12:b:cSHIFTJIS:qDRAFT' }
-" chatwork
-if filereadable(expand('$HOME/.vim/.chatwork'))
-   let g:chatwork = json_decode(join(readfile(expand('$HOME/.vim/.chatwork'))))
-endif
-" load {{{2
-" settings
+" source {{{2
 for spath in split(glob($HOME . '/.vim/settings/*.vim'), '\n')
    if !exists('g:loaded_' . fnamemodify(spath, ':t:r'))
       execute 'source ' . spath
    endif
 endfor
 unlet spath
-" packages
-if s:enable_package
-   silent! packadd matchit
-   silent! packadd expandspace
-   silent! packadd moveme
-endif
 " }}}1
 
 " languages {{{1
