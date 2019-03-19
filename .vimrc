@@ -240,7 +240,6 @@ let g:loaded_ruler = 1
 "let g:loaded_life = 1
 "let g:loaded_vimdb = 1
 let g:loaded_input = 1
-let g:loaded_fixregister = 1
 " variables {{{2
 " moveme
 let g:moveme = {}

@@ -91,7 +91,6 @@ recordjourney.vim
 runsoon.vim
 visualization.vim
 visualsearch.vim
-fixregister.vim         -> 不使用
 visualplus.vim          -> 追加 2019-03-16
 chilimarker.vim         -> 追加 2019-03-16
 completion.vim          -> 追加 2019-03-16
@@ -146,7 +145,6 @@ project.vim	project box, easy starter
 crunch.vim	read crunches
 input.vim	複数文字の入力補助(like completechar)
 fridaynight.vim	Mr.FridayNight. who was not banker.
-fixregister.vim	part of registers was fixed
 daychange.vim	日替わり定食(開発補助)
 pathogen.vim	病原体 develop(extend) fixregister
 task.vim	task list
