@@ -84,7 +84,6 @@ let g:rzrz.test = { 設定値 }
 
 
 # Git (under control) 2019-03-16
-completechar.vim        -> completion.vim に M&A (with input.vim)
 goat.vim
 moveme.vim              -> package化 settings/movemeは不使用
 quickfixdo.vim          -> 不使用
@@ -98,14 +97,13 @@ chilimarker.vim         -> 追加 2019-03-16
 completion.vim          -> 追加 2019-03-16
 
 
-# ファイル詳細 2019-02-18
+# ファイル詳細 2019-03-19
 abbreviate.vim	短縮入力(after/ftplugin移行予定)
 bufferlist.vim	buffer-listからVimで開く
 chess.vim	chessができる
 chessboard.vim	chessboardのみ、棋譜ならべとか
 colorschemer.vim	colorschemeの簡易作成
 colorschemer.tmp.txt	colorschemer-template
-completechar.vim	特殊文字の入力補助
 goat.vim	go to file, be package!
 investor.vim	株情報をWebApiから(保留)
 linkage.vim	外部Appを叩く

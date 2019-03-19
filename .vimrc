@@ -239,7 +239,6 @@ let g:loaded_colorschemer = 1
 let g:loaded_ruler = 1
 "let g:loaded_life = 1
 "let g:loaded_vimdb = 1
-let g:loaded_completechar = 1
 let g:loaded_input = 1
 let g:loaded_fixregister = 1
 " variables {{{2
