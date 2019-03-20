@@ -192,33 +192,6 @@ set t_vb=
 set noerrorbells
 " }}}1
 
-" mappings {{{1
-let mapleader = "\<space>"
-" normal-mode <leader> {{{2
-nnoremap <leader>w :<c-u>update<cr>
-nnoremap <leader><leader>w :<c-u>write!<cr>
-nnoremap <leader><leader><leader>w :<c-u>set buftype& <bar> w<cr>
-nnoremap <leader>q :<c-u>quit<cr>
-nnoremap <leader><leader>q :<c-u>quit!<cr>
-nnoremap <leader><leader><leader>q :<c-u>quitall!<cr>
-nnoremap <leader>4 <s-$>
-nnoremap <leader>5 <s-%>
-nnoremap <leader>; :
-" searches {{{2
-nnoremap <silent> // :<c-u>let v:hlsearch = !v:hlsearch<cr>
-nnoremap <silent> *  :<c-u>let [@/, v:hlsearch] = [printf('\<%s\>', expand('<cword>')), v:true]<cr>
-nnoremap <silent> #  :<c-u>let [@/, v:hlsearch] = [printf('\<%s\>', expand('<cword>')), v:true]<cr>
-nnoremap <silent> g* :<c-u>let [@/, v:hlsearch] = [expand('<cword>'), v:true]<cr>
-nnoremap <silent> g# :<c-u>let [@/, v:hlsearch] = [expand('<cword>'), v:true]<cr>
-" rendering {{{2
-nnoremap <silent> <left>  :normal! zh<cr>
-nnoremap <silent> <down>  <c-e>
-nnoremap <silent> <up>    <c-y>
-nnoremap <silent> <right> :normal! zl<cr>
-" plugin-mapper <plug> {{{2
-nmap <nowait><unique> <leader>m <plug>MoveMe
-" }}}1
-
 " plugins {{{1
 " chiffon {{{2
 let g:chiffon = {}
@@ -277,6 +250,33 @@ for spath in split(glob($HOME . '/.vim/settings/*.vim'), '\n')
    endif
 endfor
 unlet spath
+" }}}1
+
+" mappings {{{1
+let mapleader = "\<space>"
+" normal-mode <leader> {{{2
+nnoremap <leader>w :<c-u>update<cr>
+nnoremap <leader><leader>w :<c-u>write!<cr>
+nnoremap <leader><leader><leader>w :<c-u>set buftype& <bar> w<cr>
+nnoremap <leader>q :<c-u>quit<cr>
+nnoremap <leader><leader>q :<c-u>quit!<cr>
+nnoremap <leader><leader><leader>q :<c-u>quitall!<cr>
+nnoremap <leader>4 <s-$>
+nnoremap <leader>5 <s-%>
+nnoremap <leader>; :
+" searches {{{2
+nnoremap <silent> // :<c-u>let v:hlsearch = !v:hlsearch<cr>
+nnoremap <silent> *  :<c-u>let [@/, v:hlsearch] = [printf('\<%s\>', expand('<cword>')), v:true]<cr>
+nnoremap <silent> #  :<c-u>let [@/, v:hlsearch] = [printf('\<%s\>', expand('<cword>')), v:true]<cr>
+nnoremap <silent> g* :<c-u>let [@/, v:hlsearch] = [expand('<cword>'), v:true]<cr>
+nnoremap <silent> g# :<c-u>let [@/, v:hlsearch] = [expand('<cword>'), v:true]<cr>
+" rendering {{{2
+nnoremap <silent> <left>  :normal! zh<cr>
+nnoremap <silent> <down>  <c-e>
+nnoremap <silent> <up>    <c-y>
+nnoremap <silent> <right> :normal! zl<cr>
+" plugin-mapper <plug> {{{2
+nmap <nowait><unique> <leader>m <plug>MoveMe
 " }}}1
 
 " languages {{{1
