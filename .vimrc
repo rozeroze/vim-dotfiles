@@ -250,6 +250,19 @@ for spath in split(glob($HOME . '/.vim/settings/*.vim'), '\n')
    endif
 endfor
 unlet spath
+" local-rc loader {{{2
+command! -nargs=1 Rozerc :call <sid>Rozerc(<f-args>)
+function! s:Rozerc(name)
+   let file = expand($HOME . '/.vim/settings/' . a:name . '.vim')
+   if !filereadable(file)
+      echomsg printf('%s is denied', a:name)
+      return
+   endif
+   execute 'source ' .file
+endfunction
+" loads {{{2
+"Rozerc map
+" TODO: investigate settings enable/disable and coding rozerc here
 " }}}1
 
 " mappings {{{1
