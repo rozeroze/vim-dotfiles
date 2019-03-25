@@ -115,7 +115,6 @@ mandragora.vim	よくわかる薬草学
 littlehelper.vim	with a little help from my friends
 locker.vim	Vim Locked With Password
 laguillotine.vim	ラ・ギロティーヌ
-mastercancel.vim	integrated cancel stroke on vim
 lazystep.vim	何処より来りて何処へ往かん
 memorystamp.vim	別ディレクトリに放り込め Like SaveAs
 slum.vim	windows only == slum owner
