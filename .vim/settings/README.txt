@@ -126,7 +126,6 @@ fridaynight.vim	Mr.FridayNight. who was not banker.
 daychange.vim	日替わり定食(開発補助)
 pathogen.vim	病原体 develop(extend) fixregister
 task.vim	task list
-ruler.vim	the real ruler
 life.vim	LIFE -- 生命 --
 landscape.vim	景観……ああ、素晴らしきかな
 vimsql.vim	vim完結型の簡易的なDBを実装

@@ -235,7 +235,6 @@ let g:loaded_chessboard = 1
 let g:loaded_quickfixdo = 1
 let g:loaded_lazystep = 1
 let g:loaded_colorschemer = 1
-let g:loaded_ruler = 1
 " source {{{2
 for spath in split(glob($HOME . '/.vim/settings/*.vim'), '\n')
    if !exists('g:loaded_' . fnamemodify(spath, ':t:r'))
