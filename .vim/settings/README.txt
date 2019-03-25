@@ -116,7 +116,6 @@ littlehelper.vim	with a little help from my friends
 locker.vim	Vim Locked With Password
 laguillotine.vim	ラ・ギロティーヌ
 keylogger.vim	Key Logger
-dotgraph.vim	preview n edit .dot files (graphviz)
 mastercancel.vim	integrated cancel stroke on vim
 lazystep.vim	何処より来りて何処へ往かん
 memorystamp.vim	別ディレクトリに放り込め Like SaveAs
