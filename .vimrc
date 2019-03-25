@@ -316,6 +316,23 @@ function! Blink()
    redraw
    sleep 50ms
 endfunction
+" test Counter {{{2
+function! Counter()
+   let counter = {}
+   let l:count = 0
+   function! counter.up() closure
+      let l:count += 1
+      return l:count
+   endfunction
+   function! counter.down() closure
+      let l:count -= 1
+      return l:count
+   endfunction
+   function! counter.print() closure
+      return l:count
+   endfunction
+   return counter
+endfunction
 " }}}1
 
 " commands {{{1
