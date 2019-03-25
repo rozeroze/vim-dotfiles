@@ -101,9 +101,6 @@ suiSyntax.vim	syntax拡張(after/syntax移行予定)
 twin-prime.vim	双子素数のミレニアム
 visualization.vim	全角スペースの可視化など
 visualsearch.vim	visualmodeからの検索を機能拡張
-intro-schedule.vim	intro画面にscheduleを表示
-intro-schedule.txt	intro-scheduleのデータ部分
-google_calendar_sync.py	intro-scheduleとGoogleCalendar連携
 motion.vim	motionに関わるmapping(map.vimと統合)
 fightline.vim	格闘ゲーム on vim
 typeline.vim	タイピング
