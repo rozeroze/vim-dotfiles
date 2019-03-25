@@ -84,8 +84,7 @@ let g:rzrz.test = { 設定値 }
  -> もうそれいらん、こうする→ :source $HOME/.vim/settings/transfer.vim
 
 
-# ファイル詳細 2019-03-19
-abbreviate.vim	短縮入力(after/ftplugin移行予定)
+# ファイル詳細 2019-03-25
 bufferlist.vim	buffer-listからVimで開く
 chess.vim	chessができる
 chessboard.vim	chessboardのみ、棋譜ならべとか
@@ -129,7 +128,6 @@ lastdays.vim	死の日の記憶
 confusion.vim	you have some-damage! you confused!
 project.vim	project box, easy starter
 crunch.vim	read crunches
-input.vim	複数文字の入力補助(like completechar)
 fridaynight.vim	Mr.FridayNight. who was not banker.
 daychange.vim	日替わり定食(開発補助)
 pathogen.vim	病原体 develop(extend) fixregister
