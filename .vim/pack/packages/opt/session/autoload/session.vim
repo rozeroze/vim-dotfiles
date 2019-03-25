@@ -3,7 +3,7 @@
 " Summary: session manager
 " Authors: rozeroze <rosettastone1886@gmail.com>
 " License: MIT
-" Version: 2019-03-13
+" Version: 2019-03-20
 
 
 " variable
@@ -62,6 +62,7 @@ endfunction
 function! session#make(args) " {{{1
    try
       let name = ( a:0 != 0 ? a:1 : 'session' . localtime() )
+      "let name .= '.session'
       if match(name, '/') != -1 || session#mkdir(name)
          execute printf('mksession%s %s',
                      \ ( s:session.override ? '!' : '' ),
@@ -156,6 +157,7 @@ function s:get_session_list() " {{{1
    " make it session-object list
    " ex. [ 'session', 'session.quickfix', 'session.winpos' ]
    "  -> [ { 'name': 'session', 'quickfix': 1, 'winpos': 1 } ]
+   let list = []
    let files = <sid>get_all_files()
    call sort(files)
    return files
