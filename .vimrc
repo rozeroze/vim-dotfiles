@@ -234,7 +234,6 @@ let g:loaded_chess = 1
 let g:loaded_chessboard = 1
 let g:loaded_quickfixdo = 1
 let g:loaded_rozeonline = 1
-let g:loaded_keylogger = 1
 let g:loaded_mastercancel = 1
 let g:loaded_lazystep = 1
 let g:loaded_slum = 1
