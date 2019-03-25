@@ -88,8 +88,6 @@ let g:rzrz.test = { 設定値 }
 bufferlist.vim	buffer-listからVimで開く
 chess.vim	chessができる
 chessboard.vim	chessboardのみ、棋譜ならべとか
-colorschemer.vim	colorschemeの簡易作成
-colorschemer.tmp.txt	colorschemer-template
 goat.vim	go to file, be package!
 linkage.vim	外部Appを叩く
 loremIpsum.vim	ダミーテキスト
