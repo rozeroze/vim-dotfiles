@@ -85,57 +85,35 @@ let g:rzrz.test = { 設定値 }
 
 
 # ファイル詳細 2019-03-25
-bufferlist.vim	buffer-listからVimで開く
 chess.vim	chessができる
 chessboard.vim	chessboardのみ、棋譜ならべとか
 goat.vim	go to file, be package!
 linkage.vim	外部Appを叩く
 loremIpsum.vim	ダミーテキスト
-lunatic-insert.vim	insertmodeでのお遊び機能
 map.vim	基本的なmapping
 netrw.conf.vim	Netrwの追加設定
 quickfixdo.vim	argdoみたいな感じでquickfixも
-rolling-color.vim	colorschemeが順番に(お遊び)
 runsoon.vim	buffer上のテキストをscriptとして実行
 suiSyntax.vim	syntax拡張(after/syntax移行予定)
-twin-prime.vim	双子素数のミレニアム
 visualization.vim	全角スペースの可視化など
 visualsearch.vim	visualmodeからの検索を機能拡張
-motion.vim	motionに関わるmapping(map.vimと統合)
 fightline.vim	格闘ゲーム on vim
 typeline.vim	タイピング
 recordjourney.vim	冒険の書を記録しますか?
 mandragora.vim	よくわかる薬草学
-littlehelper.vim	with a little help from my friends
 locker.vim	Vim Locked With Password
 laguillotine.vim	ラ・ギロティーヌ
 lazystep.vim	何処より来りて何処へ往かん
 memorystamp.vim	別ディレクトリに放り込め Like SaveAs
-instantset.vim	mask-cmd :set aaa=bbb to :Set aaa
-writeorders.vim	ご注文はWriteですか？
-lastdays.vim	死の日の記憶
 confusion.vim	you have some-damage! you confused!
-project.vim	project box, easy starter
 crunch.vim	read crunches
-fridaynight.vim	Mr.FridayNight. who was not banker.
-daychange.vim	日替わり定食(開発補助)
-pathogen.vim	病原体 develop(extend) fixregister
 task.vim	task list
 life.vim	LIFE -- 生命 --
-landscape.vim	景観……ああ、素晴らしきかな
-vimsql.vim	vim完結型の簡易的なDBを実装
-doteditor.vim	おえかき
-bitmap_gen.exe	doteditor.vim用 bitmap作成exe
-gif_gen.exe	doteditor.vim用Ügif作成exe
-vimvc.vim	VimでわかるMVC ヴィムブイシー
 binedit.vim	binary file editable
 chilimarker.vim	Column HIghLIght MARKER
 float.vim	Make Vim-Screen Float
 visualplus.vim	improve visual-mode
-worms.vim	worms wriggling around vim
-blinksearch.vim	search-highlight blinking
 completion.vim	M & A: completechar & input
-history.vim	show history-of-file, by git log
 
 
 " vim: set ts=38 sts=38 sw=38 noet :
