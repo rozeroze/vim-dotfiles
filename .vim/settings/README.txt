@@ -116,7 +116,6 @@ locker.vim	Vim Locked With Password
 laguillotine.vim	ラ・ギロティーヌ
 lazystep.vim	何処より来りて何処へ往かん
 memorystamp.vim	別ディレクトリに放り込め Like SaveAs
-slum.vim	windows only == slum owner
 instantset.vim	mask-cmd :set aaa=bbb to :Set aaa
 writeorders.vim	ご注文はWriteですか？
 lastdays.vim	死の日の記憶
