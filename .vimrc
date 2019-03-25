@@ -365,6 +365,14 @@ command! -nargs=+ Arg :call <sid>Arg(<args>)
 function! s:Arg(...)
    echo a:000
 endfunction
+" lscd {{{2
+command! Lscd :call <sid>Lscd()
+function! s:Lscd()
+   nnoremap <nowait><buffer> : :call <sid>LscdExec(input('vim-lscd: '))<cr>
+endfunction
+function! s:LscdExec(command)
+   "call append(0, a:command)
+endfunction
 " }}}1
 
 " vim: set et ts=3 sts=3 sw=3 fdm=marker fdl=1 :
