@@ -230,7 +230,6 @@ endif
 " settings {{{1
 " preset-load {{{2
 let g:loaded_intro_schedule = 1
-let g:loaded_investor = 1
 let g:loaded_chess = 1
 let g:loaded_chessboard = 1
 let g:loaded_quickfixdo = 1

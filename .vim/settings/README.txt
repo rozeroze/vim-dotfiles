@@ -91,7 +91,6 @@ chessboard.vim	chessboardのみ、棋譜ならべとか
 colorschemer.vim	colorschemeの簡易作成
 colorschemer.tmp.txt	colorschemer-template
 goat.vim	go to file, be package!
-investor.vim	株情報をWebApiから(保留)
 linkage.vim	外部Appを叩く
 loremIpsum.vim	ダミーテキスト
 lunatic-insert.vim	insertmodeでのお遊び機能
