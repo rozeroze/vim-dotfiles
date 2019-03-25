@@ -110,7 +110,6 @@ motion.vim	motionに関わるmapping(map.vimと統合)
 fightline.vim	格闘ゲーム on vim
 typeline.vim	タイピング
 recordjourney.vim	冒険の書を記録しますか?
-rozeonline.vim	入力補助? ……邪魔
 mandragora.vim	よくわかる薬草学
 littlehelper.vim	with a little help from my friends
 locker.vim	Vim Locked With Password
