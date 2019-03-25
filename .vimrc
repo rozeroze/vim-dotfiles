@@ -360,6 +360,11 @@ function! s:Diff()
       windo diffthis
    endif
 endfunction
+" echo arguments {{{2
+command! -nargs=+ Arg :call <sid>Arg(<args>)
+function! s:Arg(...)
+   echo a:000
+endfunction
 " }}}1
 
 " vim: set et ts=3 sts=3 sw=3 fdm=marker fdl=1 :
