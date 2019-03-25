@@ -163,8 +163,18 @@ function s:get_session_list() " {{{1
    return files
 endfunction
 
-function s:mkdir(path) " {{{1
+function s:mkdir(_path) " {{{1
    " change session#mkdir -> s:mkdir
+   let path = s:session['path']
+   if path[len(path) - 1] != '/'
+      let path .= '/'
+   endif
+   let path .= _path
+   try
+      call mkdir(path, 'p', 0755)
+   catch /.*/
+      echomsg "mkdir failure"
+   endtry
 endfunction
 
 " }}}1
