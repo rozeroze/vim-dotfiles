@@ -227,7 +227,7 @@ if s:enable_package
    " }}}1
 endif
 
-" settings {{{1
+" rozerc {{{1
 let g:rozerc = {}
 " local-rc loader {{{2
 command! -nargs=+ Rozerc :call <sid>Rozerc(<args>)
@@ -240,7 +240,7 @@ function! s:Rozerc(name, ...)
       echoerr "argument error: Rozerc cannot has over 3 arguments"
       return
    endif
-   let file = expand('$HOME/.vim/settings/' . a:name . '.vim')
+   let file = expand('$HOME/.vim/rozerc/' . a:name . '.vim')
    if !filereadable(file)
       echomsg printf('%s is denied', a:name)
       return
