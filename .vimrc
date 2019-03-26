@@ -263,8 +263,21 @@ function! s:Rozerc(name, ...)
    execute 'source ' . file
 endfunction
 " loads {{{2
-"Rozerc map
 " TODO: investigate settings enable/disable and coding rozerc here
+Rozerc 'goat'
+Rozerc 'linkage'
+Rozerc 'map'
+Rozerc 'netrw.conf'
+Rozerc 'runsoon'
+Rozerc 'suiSyntax'
+Rozerc 'visualization'
+Rozerc 'visualsearch'
+Rozerc 'mandragora'
+Rozerc 'locker'
+Rozerc 'binedit'
+Rozerc 'chilimarker'
+Rozerc 'visualplus'
+Rozerc 'completion'
 " }}}1
 
 " mappings {{{1
