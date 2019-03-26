@@ -228,6 +228,7 @@ if s:enable_package
 endif
 
 " settings {{{1
+let g:rozerc = {}
 " preset-load {{{2
 "let g:loaded_chess = 1
 "let g:loaded_chessboard = 1
@@ -241,14 +242,25 @@ endif
 "endfor
 "unlet spath
 " local-rc loader {{{2
-command! -nargs=1 Rozerc :call <sid>Rozerc(<f-args>)
-function! s:Rozerc(name)
-   let file = expand($HOME . '/.vim/settings/' . a:name . '.vim')
+command! -nargs=+ Rozerc :call <sid>Rozerc(<args>)
+function! s:Rozerc(name, ...)
+   if type(a:name) != v:t_string
+      echoerr "argument error: the first argument for Rozerc must be string-value"
+      return
+   endif
+   if a:0 > 1
+      echoerr "argument error: Rozerc cannot has over 3 arguments"
+      return
+   endif
+   let file = expand('$HOME/.vim/settings/' . a:name . '.vim')
    if !filereadable(file)
       echomsg printf('%s is denied', a:name)
       return
    endif
-   execute 'source ' .file
+   if a:0 == 1
+      let g:rozerc[a:name] = a:1
+   endif
+   execute 'source ' . file
 endfunction
 " loads {{{2
 "Rozerc map
