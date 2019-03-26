@@ -229,17 +229,17 @@ endif
 
 " settings {{{1
 " preset-load {{{2
-let g:loaded_chess = 1
-let g:loaded_chessboard = 1
-let g:loaded_quickfixdo = 1
-let g:loaded_lazystep = 1
+"let g:loaded_chess = 1
+"let g:loaded_chessboard = 1
+"let g:loaded_quickfixdo = 1
+"let g:loaded_lazystep = 1
 " source {{{2
-for spath in split(glob($HOME . '/.vim/settings/*.vim'), '\n')
-   if !exists('g:loaded_' . fnamemodify(spath, ':t:r'))
-      execute 'source ' . spath
-   endif
-endfor
-unlet spath
+"for spath in split(glob($HOME . '/.vim/settings/*.vim'), '\n')
+"   if !exists('g:loaded_' . fnamemodify(spath, ':t:r'))
+"      execute 'source ' . spath
+"   endif
+"endfor
+"unlet spath
 " local-rc loader {{{2
 command! -nargs=1 Rozerc :call <sid>Rozerc(<f-args>)
 function! s:Rozerc(name)
