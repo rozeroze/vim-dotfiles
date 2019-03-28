@@ -8,9 +8,11 @@
 
 " variable
 let s:session = {
-              \   'path': '$HOME/',
-              \   'subdir': v:false,
-              \   'override': v:false
+              \     'path': '$HOME/'
+              \   , 'subdir': v:false
+              \   , 'override': v:false
+              \   , 'quickfix': v:false
+              \   , 'winpos': v:false
               \ }
 
 " functions autoloads
