@@ -5,6 +5,8 @@
 " License: MIT
 " Version: 2018-07-09
 
+" TODO: test
+finish
 
 function! session#session(...)
    " smoke call, this is short cut

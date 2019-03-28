@@ -5,6 +5,8 @@
 " License: MIT
 " Version: 2018-07-09
 
+" TODO: test
+finish
 
 if exists('g:loaded_session_maker')
    finish
