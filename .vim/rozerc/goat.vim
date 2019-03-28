@@ -26,6 +26,7 @@ let s:list['gvimrc'] = '$MYGVIMRC'
 let s:list['home'] = '$HOME'
 "let s:list['name'] = 'path'
 
+" TODO: lockvar の depth について調べる
 for s:key in keys(s:list)
    lockvar s:list[s:key]
 endfor
