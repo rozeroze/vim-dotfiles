@@ -251,21 +251,20 @@ function! s:Rozerc(name, ...)
    execute 'source ' . file
 endfunction
 " loads {{{2
-" TODO: investigate settings enable/disable and coding rozerc here
-Rozerc 'goat'
-Rozerc 'linkage'
-Rozerc 'map'
-Rozerc 'netrw.conf'
-Rozerc 'runsoon'
-Rozerc 'suiSyntax'
-Rozerc 'visualization'
-Rozerc 'visualsearch'
-Rozerc 'mandragora'
-Rozerc 'locker'
-Rozerc 'binedit'
-Rozerc 'chilimarker'
-Rozerc 'visualplus'
-Rozerc 'completion'
+silent! Rozerc 'goat'
+silent! Rozerc 'linkage'
+silent! Rozerc 'map'
+silent! Rozerc 'netrw.conf'
+silent! Rozerc 'runsoon'
+silent! Rozerc 'suiSyntax'
+silent! Rozerc 'visualization'
+silent! Rozerc 'visualsearch'
+silent! Rozerc 'mandragora'
+silent! Rozerc 'locker'
+silent! Rozerc 'binedit'
+silent! Rozerc 'chilimarker'
+silent! Rozerc 'visualplus'
+silent! Rozerc 'completion'
 " }}}1
 
 " mappings {{{1
