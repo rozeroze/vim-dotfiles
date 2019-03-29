@@ -63,7 +63,8 @@ endif
 if exists('+transparency')
    augroup Invisible
       autocmd!
-      autocmd GUIEnter * set transparency=245
+      " 3 と 11 の公倍数で (x <= 255) を満たす最大値
+      autocmd GUIEnter * set transparency=231
    augroup END
 endif
 " }}}
